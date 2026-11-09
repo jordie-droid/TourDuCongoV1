@@ -91,7 +91,7 @@
         border-radius: 12px;
         width: 210px;
         max-height: 70vh;
-        overflow: hidden; /* Suppression de la scrollbar */
+        overflow: hidden;
         border: 1px solid #ffffff30;
         font-size: 12px;
       }
@@ -138,7 +138,6 @@
         pointer-events: none;
       }
 
-      /* CIRCUIT PLACE EN HAUT PRES DU PANNEAU DE VITESSE */
       #map {
         position: absolute;
         left: 14px;
@@ -150,7 +149,6 @@
         border-radius: 10px;
       }
 
-      /* BOUTON PAUSE EN HAUT A GAUCHE DU CLASSEMENT */
       #topPauseBtn {
         position: absolute;
         right: 234px;
@@ -269,10 +267,6 @@
         color: #cdeaff;
       }
 
-      /* =========================================================
-   ÉCRAN D'ORIENTATION MOBILE
-========================================================= */
-
       #orientationWarning {
         display: none;
         position: fixed;
@@ -302,7 +296,7 @@
       #orientationWarning p {
         max-width: 420px;
         font-size: 15px;
-        line.height: 1.6;
+        line-height: 1.6;
         color: #d4e7f2;
       }
 
@@ -319,35 +313,19 @@
       }
 
       @keyframes rotatePhone {
-        0%,
-        35% {
-          transform: rotate(0deg);
-        }
-        65%,
-        100% {
-          transform: rotate(90deg);
-        }
+        0%, 35% { transform: rotate(0deg); }
+        65%, 100% { transform: rotate(90deg); }
       }
 
       @media (max-width: 1100px) and (orientation: portrait) {
-        #orientationWarning {
-          display: flex;
-        }
-        #hud {
-          visibility: hidden;
-        }
-        canvas {
-          visibility: hidden;
-        }
+        #orientationWarning { display: flex; }
+        #hud { visibility: hidden; }
+        canvas { visibility: hidden; }
       }
 
       @media (max-width: 1100px) and (orientation: landscape) {
-        #hud {
-          visibility: visible;
-        }
-        canvas {
-          visibility: visible;
-        }
+        #hud { visibility: visible; }
+        canvas { visibility: visible; }
 
         #top {
           top: 6px;
@@ -363,12 +341,8 @@
           min-width: 110px;
         }
 
-        #speed {
-          font-size: 25px;
-        }
-        #speed small {
-          font-size: 9px;
-        }
+        #speed { font-size: 25px; }
+        #speed small { font-size: 9px; }
 
         #right {
           top: 7px;
@@ -376,21 +350,14 @@
           bottom: auto;
           width: 145px;
           max-height: 50vh;
-          overflow: hidden; /* Suppression scrollbar */
+          overflow: hidden;
           padding: 7px 8px;
           font-size: 9px;
         }
 
-        #right h3 {
-          font-size: 10px;
-          margin-bottom: 4px;
-        }
-        #ranking div {
-          padding: 2px 0;
-        }
-        #ranking div span {
-          font-size: 8px;
-        }
+        #right h3 { font-size: 10px; margin-bottom: 4px; }
+        #ranking div { padding: 2px 0; }
+        #ranking div span { font-size: 8px; }
 
         #map {
           width: 110px;
@@ -407,20 +374,11 @@
           font-size: 15px;
         }
 
-        #bottom {
-          display: none;
-        }
-        #mobileHint {
-          display: none;
-        }
-
-        #message {
-          top: 43%;
-          font-size: clamp(30px, 6vw, 55px);
-        }
+        #bottom { display: none; }
+        #mobileHint { display: none; }
+        #message { top: 43%; font-size: clamp(30px, 6vw, 55px); }
       }
 
-      /* ===== DISPOSITION MOBILE ADAPTÉE ===== */
       @media (max-width: 1100px) and (orientation: landscape) {
         #touch {
           position: fixed !important;
@@ -437,7 +395,6 @@
           z-index: 15 !important;
         }
 
-        /* JOYSTICK RONDE À GAUCHE */
         #touch .joystick {
           width: 120px; height: 120px; border-radius: 50%;
           position: relative; flex: 0 0 120px;
@@ -460,7 +417,6 @@
           pointer-events:none;
         }
 
-        /* SEULEMENT 2 BOUTONS A DROITE (TURBO + POUSSER) */
         #touch .mobile-actions {
           display: flex;
           gap: 16px;
@@ -557,10 +513,7 @@
         <div id="status">PRÊT POUR LA COURSE</div>
       </div>
 
-      <!-- CIRCUIT LOCALISÉ JUSTE EN-DESSOUS DU PANNEAU DE VITESSE -->
       <canvas id="map" width="360" height="300"></canvas>
-
-      <!-- BOUTON PAUSE À GAUCHE DU CLASSEMENT -->
       <button id="topPauseBtn" data-key="pause" aria-label="Pause">Ⅱ</button>
 
       <div id="right">
@@ -578,7 +531,6 @@
 
       <div id="message">3</div>
 
-      <!-- MANETTE MOBILE MODIFIÉE (JOYSTICK + TURBO + POUSSER) -->
       <div id="touch" aria-label="Manette de jeu mobile">
         <div class="joystick" id="steeringJoystick" aria-label="Joystick directionnel">
           <div class="stick" id="steeringStick"></div>
@@ -601,10 +553,6 @@
 
     <script type="module">
       import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
-
-      /* =========================================================
-   ORIENTATION MOBILE
-========================================================= */
 
       async function requestLandscape() {
         try {
@@ -647,10 +595,6 @@
       addEventListener("orientationchange", updateOrientation);
 
       updateOrientation();
-
-      /* =========================================================
-   SCÈNE ET ÉCLAIRAGE
-========================================================= */
 
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x9bc5df);
@@ -731,10 +675,6 @@
       ground.position.y = -0.35;
       ground.receiveShadow = true;
       scene.add(ground);
-
-      /* =========================================================
-   PARCOURS URBAIN — KINSHASA
-========================================================= */
 
       const TRACK_POINTS = [
         [0, 170],
@@ -1184,8 +1124,8 @@
       for (let i = 0; i < 120; i++) {
         const s = (LAP * i) / 120;
         const side = i % 2 ? 1 : -1;
-        const distance = WIDTH / 2 + 12 + (i % 4) * 5;
-        const p = positionAt(s, side * distance);
+        const safeDistance = WIDTH / 2 + 18 + (i % 4) * 5;
+        const p = positionAt(s, side * safeDistance);
         const d = tangentAt(s);
         const angle = Math.atan2(-d.z, d.x);
 
@@ -1201,7 +1141,7 @@
         const s = (LAP * (i + 0.4)) / 70;
         const side = i % 2 ? 1 : -1;
 
-        const p = positionAt(s, side * (WIDTH / 2 + 34 + (i % 3) * 7));
+        const p = positionAt(s, side * (WIDTH / 2 + 40 + (i % 3) * 7));
         const d = tangentAt(s);
 
         const b = addBuilding(
@@ -1253,6 +1193,35 @@
 
         return tex;
       }
+
+      const districtNames = [
+        "GOMBE", "MATONGE", "LIMETE", "KINTAMBO",
+        "NGALIEMA", "KALAMU", "BANDAL", "MASINA", "BARUMBU", "KINSHASA"
+      ];
+
+      function createDistrictSign(s, side, label) {
+        const p = positionAt(s, side * (WIDTH / 2 + 7.5));
+        const d = tangentAt(s);
+        const g = new THREE.Group();
+        g.position.set(p.x, 0, p.z);
+        g.rotation.y = -Math.atan2(d.z, d.x);
+
+        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 4, 7), M.metal);
+        post.position.y = 2;
+        g.add(post);
+
+        const board = new THREE.Mesh(
+          new THREE.BoxGeometry(4.8, 1.2, 0.18),
+          new THREE.MeshStandardMaterial({ map: makeSignTexture("QUARTIER " + label, "#155e9c") })
+        );
+        board.position.set(1.2, 3.4, 0);
+        g.add(board);
+        scene.add(g);
+      }
+
+      districtNames.forEach((name, i) => {
+        createDistrictSign((LAP * i) / districtNames.length, i % 2 === 0 ? 1 : -1, name);
+      });
 
       function shopSign(s, side, label, color) {
         const p = positionAt(s, side * (WIDTH / 2 + 12));
@@ -1453,40 +1422,6 @@
         trafficLight(LAP * f, -1);
       });
 
-      function directionSign(s, side, label) {
-        const p = positionAt(s, side * (WIDTH / 2 + 7));
-        const d = tangentAt(s);
-
-        const g = new THREE.Group();
-        g.position.set(p.x, 0, p.z);
-        g.rotation.y = -Math.atan2(d.z, d.x);
-
-        const post = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.07, 0.08, 3.5, 7),
-          M.metal,
-        );
-
-        post.position.y = 1.75;
-        g.add(post);
-
-        const board = new THREE.Mesh(
-          new THREE.BoxGeometry(4.2, 0.9, 0.16),
-          new THREE.MeshStandardMaterial({
-            map: makeSignTexture(label, "#176b48"),
-          }),
-        );
-
-        board.position.set(1.2, 3.1, 0);
-        g.add(board);
-        scene.add(g);
-      }
-
-      directionSign(LAP * 0.12, 1, "GOMBE");
-      directionSign(LAP * 0.32, -1, "MATONGE");
-      directionSign(LAP * 0.52, 1, "LIMETE");
-      directionSign(LAP * 0.74, -1, "CENTRE VILLE");
-      directionSign(LAP * 0.89, 1, "KINSHASA");
-
       const treeMaterials = [
         mat(0x236b37),
         mat(0x478a3e),
@@ -1600,64 +1535,79 @@
         0xffffff, 0xf39c12, 0x8e44ad, 0x27ae60
       ];
 
+      // AMÉLIORATION DU MODÈLE DE SUPPORTEUR 3D DÉTAILLÉ
       function createSupporter(s, side, index) {
-        const p = positionAt(s, side * (WIDTH / 2 + 5.2));
+        const p = positionAt(s, side * (WIDTH / 2 + 4.5));
         const tangent = tangentAt(s);
         const group = new THREE.Group();
         group.position.set(p.x, p.y, p.z);
         group.rotation.y = -Math.atan2(tangent.z, tangent.x);
 
-        const shirt = mat(fanShirts[index % fanShirts.length]);
-        const skin = mat([0x8d5a3b, 0x6e432e, 0xb87952][index % 3]);
-        const dark = mat(0x20252b);
-        const head = new THREE.Mesh(
-          new THREE.SphereGeometry(0.23, 9, 7), skin
-        );
-        head.position.y = 1.55;
+        const shirtMat = mat(fanShirts[index % fanShirts.length]);
+        const skinMat = mat([0x8d5a3b, 0x6e432e, 0xb87952][index % 3]);
+        const pantMat = mat(0x1a2530);
+        const shoeMat = mat(0x111111);
+        const hairMat = mat(0x101010);
+
+        // Tête et coiffure
+        const head = new THREE.Mesh(new THREE.SphereGeometry(0.18, 12, 12), skinMat);
+        head.position.y = 1.48;
+        head.castShadow = true;
         group.add(head);
 
-        const torso = new THREE.Mesh(
-          new THREE.CapsuleGeometry(0.22, 0.48, 3, 7), shirt
-        );
-        torso.position.y = 1.05;
+        const hair = new THREE.Mesh(new THREE.SphereGeometry(0.14, 10, 8), hairMat);
+        hair.position.set(0, 1.58, -0.02);
+        group.add(hair);
+
+        // Torse / T-shirt avec volume
+        const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.52, 10), shirtMat);
+        torso.position.y = 1.02;
+        torso.castShadow = true;
         group.add(torso);
 
-        const legs = new THREE.Mesh(
-          new THREE.BoxGeometry(0.36, 0.48, 0.28), dark
-        );
-        legs.position.y = 0.28;
-        group.add(legs);
+        // Jambes séparées et chaussures
+        for (const xOffset of [-0.09, 0.09]) {
+          const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.05, 0.5, 8), pantMat);
+          leg.position.set(xOffset, 0.52, 0);
+          leg.castShadow = true;
+          group.add(leg);
 
+          const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.07, 0.16), shoeMat);
+          shoe.position.set(xOffset, 0.25, 0.04);
+          shoe.castShadow = true;
+          group.add(shoe);
+        }
+
+        // Bras articulés pour l'animation de liesse
         const armPivots = [];
-        for (const z of [-0.29, 0.29]) {
+        for (const zOffset of [-0.23, 0.23]) {
           const pivot = new THREE.Group();
-          pivot.position.set(0, 1.27, z);
-          const arm = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.065, 0.085, 0.62, 7), skin
-          );
-          arm.position.y = 0.28;
+          pivot.position.set(0, 1.22, zOffset);
+
+          const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.04, 0.45, 8), shirtMat);
+          arm.position.y = -0.2;
+          arm.castShadow = true;
           pivot.add(arm);
-          const hand = new THREE.Mesh(
-            new THREE.SphereGeometry(0.095, 7, 6), skin
-          );
-          hand.position.y = 0.61;
+
+          const hand = new THREE.Mesh(new THREE.SphereGeometry(0.055, 8, 8), skinMat);
+          hand.position.y = -0.42;
           pivot.add(hand);
+
           group.add(pivot);
           armPivots.push(pivot);
         }
 
+        // Accessoire : Drapeau ou casquette pour certains supporteurs
         if (index % 3 === 0) {
-          const pole = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.025, 0.025, 1.25, 5),
-            mat(0xdddddd)
-          );
-          pole.position.set(0.05, 1.95, 0.42);
+          const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.4, 6), mat(0xdddddd));
+          pole.position.set(0.05, 1.85, 0.35);
           group.add(pole);
+
           const flag = new THREE.Mesh(
-            new THREE.BoxGeometry(0.72, 0.38, 0.035),
+            new THREE.BoxGeometry(0.65, 0.38, 0.03),
             mat(index % 2 ? 0xffd22e : 0x16a085)
           );
-          flag.position.set(0.38, 2.28, 0.42);
+          flag.position.set(0.35, 2.15, 0.35);
           group.add(flag);
         }
 
@@ -1668,8 +1618,8 @@
         });
       }
 
-      for (let i = 0; i < 64; i++) {
-        const sFan = (LAP * (i + 0.25)) / 64;
+      for (let i = 0; i < 75; i++) {
+        const sFan = (LAP * (i + 0.25)) / 75;
         const side = i % 2 === 0 ? -1 : 1;
         createSupporter(sFan, side, i);
       }
@@ -2366,7 +2316,6 @@
         keys.right = keys.right || joystickX > 0.22;
       }
 
-      // ÉCOUTEURS DE BOUTONS TACTILES Y COMPRIS BOUTON PAUSE EN HAUT
       document.querySelectorAll("#touch button, #topPauseBtn").forEach((button) => {
         const key = button.dataset.key;
 
@@ -2685,7 +2634,6 @@
         }
 
         if (isPlayer) {
-          // SUR MOBILE : ACCELERATION AUTOMATIQUE OU DU CYCLE
           const accel = keys.accelerate || isMobileDevice ? 13.5 : 0;
           const brake = keys.brake ? 25 : 0;
 
