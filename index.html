@@ -33,6 +33,112 @@
         touch-action: none;
       }
 
+      /* MENU PRINCIPAL & SPLASH SCREEN */
+      #mainMenu {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: radial-gradient(circle at center, #133b54 0%, #06111c 85%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      #mainMenu.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(1.05);
+      }
+
+      .menu-container {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 600px;
+        background: #071522cc;
+        border: 1px solid #ffffff30;
+        backdrop-filter: blur(12px);
+        padding: 35px 30px;
+        border-radius: 24px;
+        box-shadow: 0 20px 50px #0009;
+        animation: menuSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes menuSlideIn {
+        0% { transform: translateY(30px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+      }
+
+      .menu-badge {
+        display: inline-block;
+        background: #00d2ff25;
+        border: 1px solid #00d2ff80;
+        color: #3ee6ff;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+      }
+
+      .menu-container h1 {
+        font-size: clamp(28px, 6vw, 48px);
+        font-weight: 1000;
+        margin: 0 0 10px;
+        letter-spacing: 1px;
+        background: linear-gradient(180deg, #ffffff 30%, #8de1ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      }
+
+      .menu-container h1 span {
+        color: #3ee6ff;
+        -webkit-text-fill-color: #3ee6ff;
+      }
+
+      .menu-container p {
+        color: #c4d9e5;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0 0 25px;
+      }
+
+      .menu-btn {
+        background: linear-gradient(145deg, #00c6ff, #0072ff);
+        color: white;
+        border: none;
+        padding: 16px 40px;
+        font-size: 18px;
+        font-weight: 900;
+        border-radius: 14px;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+        letter-spacing: 1px;
+      }
+
+      .menu-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 198, 255, 0.6);
+      }
+
+      .menu-btn:active {
+        transform: scale(0.96);
+      }
+
+      .splash-canvas-container {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.55;
+      }
+
       #hud {
         position: fixed;
         inset: 0;
@@ -481,14 +587,67 @@
       #resultList .result-row:first-child { background:#d6a52b30; border-color:#ffd86b80; }
       #resultList .place { color:#8de1ff; font-weight:900; }
       #resultList .time { color:#ffe28a; font-weight:800; font-variant-numeric:tabular-nums; }
-      #resultClose {
-        display:block; margin:15px auto 0; padding:11px 24px; border-radius:10px;
-        border:1px solid #8de1ff; background:#0877a8; color:white; font-weight:900;
+      .result-buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 18px;
+      }
+      .result-btn {
+        padding: 11px 20px; border-radius:10px;
+        border:1px solid #8de1ff; font-weight:900; cursor:pointer;
+        color:white;
+      }
+      #resultRestart { background: linear-gradient(145deg, #0786c9, #075078); }
+      #resultClose { background: #1f3747; }
+
+      /* Style pour le menu de pause interactif */
+      #pauseMenu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        align-items: center;
+        justify-content: center;
+        background: #020a12c9;
+        backdrop-filter: blur(7px);
+        pointer-events: auto;
+      }
+      #pauseMenu.show { display: flex; }
+      .pause-panel {
+        width: min(340px, 90vw);
+        background: linear-gradient(155deg, #183849f5, #071522f7);
+        border: 1px solid #9de7ff80;
+        border-radius: 18px;
+        box-shadow: 0 16px 50px #0009;
+        padding: 24px;
+        text-align: center;
+      }
+      .pause-panel h2 {
+        margin: 0 0 20px;
+        color: #9ce9ff;
+        font-size: 24px;
+      }
+      .pause-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
       }
     </style>
   </head>
 
   <body>
+    <!-- MENU PRINCIPAL & SPLASH ANIMÉ -->
+    <div id="mainMenu">
+      <div class="splash-canvas-container" id="splashCanvasContainer"></div>
+      <div class="menu-container">
+        <div class="menu-badge">KINSHASA URBAN CHAMPIONSHIP</div>
+        <h1>VELO 3D <span>CHAMPIONSHIP</span></h1>
+        <p>Affrontez 9 coureurs à travers les boulevards et quartiers emblématiques de Kinshasa. Gérez votre endurance, utilisez le turbo et terminez sur le podium !</p>
+        <button id="startMenuBtn" class="menu-btn">JOUER</button>
+      </div>
+    </div>
+
     <div id="orientationWarning">
       <div class="orientationIcon">📱</div>
       <h2>VEUILLEZ TOURNER VOTRE APPAREIL</h2>
@@ -546,7 +705,21 @@
           <h2>COURSE TERMINÉE</h2>
           <p class="result-sub">CLASSEMENT FINAL — TOP 10</p>
           <div id="resultList"></div>
-          <button id="resultClose" type="button">FERMER</button>
+          <div class="result-buttons">
+            <button id="resultRestart" class="result-btn" type="button">REJOUER</button>
+            <button id="resultClose" class="result-btn" type="button">FERMER</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu de Pause Interactif -->
+      <div id="pauseMenu" role="dialog" aria-modal="true" aria-label="Menu Pause">
+        <div class="pause-panel">
+          <h2>PAUSE</h2>
+          <div class="pause-buttons">
+            <button id="pauseResume" class="result-btn" type="button" style="background:#1f3747;">REPRENDRE</button>
+            <button id="pauseRestart" class="result-btn" type="button" style="background:linear-gradient(145deg, #0786c9, #075078);">RECOMMENCER</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1535,7 +1708,6 @@
         0xffffff, 0xf39c12, 0x8e44ad, 0x27ae60
       ];
 
-      // AMÉLIORATION DU MODÈLE DE SUPPORTEUR 3D DÉTAILLÉ
       function createSupporter(s, side, index) {
         const p = positionAt(s, side * (WIDTH / 2 + 4.5));
         const tangent = tangentAt(s);
@@ -1549,7 +1721,6 @@
         const shoeMat = mat(0x111111);
         const hairMat = mat(0x101010);
 
-        // Tête et coiffure
         const head = new THREE.Mesh(new THREE.SphereGeometry(0.18, 12, 12), skinMat);
         head.position.y = 1.48;
         head.castShadow = true;
@@ -1559,13 +1730,11 @@
         hair.position.set(0, 1.58, -0.02);
         group.add(hair);
 
-        // Torse / T-shirt avec volume
         const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.52, 10), shirtMat);
         torso.position.y = 1.02;
         torso.castShadow = true;
         group.add(torso);
 
-        // Jambes séparées et chaussures
         for (const xOffset of [-0.09, 0.09]) {
           const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.05, 0.5, 8), pantMat);
           leg.position.set(xOffset, 0.52, 0);
@@ -1578,7 +1747,6 @@
           group.add(shoe);
         }
 
-        // Bras articulés pour l'animation de liesse
         const armPivots = [];
         for (const zOffset of [-0.23, 0.23]) {
           const pivot = new THREE.Group();
@@ -1597,7 +1765,6 @@
           armPivots.push(pivot);
         }
 
-        // Accessoire : Drapeau ou casquette pour certains supporteurs
         if (index % 3 === 0) {
           const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.4, 6), mat(0xdddddd));
           pole.position.set(0.05, 1.85, 0.35);
@@ -2365,6 +2532,7 @@
    ÉTAT DE LA COURSE
 ========================================================= */
 
+      let gameStarted = false; // Gère l'attente du menu
       let raceStarted = false;
       let paused = false;
       let countdown = 3;
@@ -2374,6 +2542,59 @@
       let message = document.getElementById("message");
       let turboActive = false;
       let raceCompleted = false;
+
+      // ========================================================
+      // SPLASH SCREEN 3D (Animation du cycliste d'introduction)
+      // ========================================================
+      const splashScene = new THREE.Scene();
+      const splashCamera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 100);
+      splashCamera.position.set(0, 1.5, 4.5);
+      splashCamera.lookAt(0, 1, 0);
+
+      const splashRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      splashRenderer.setSize(innerWidth, innerHeight);
+      splashRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      document.getElementById("splashCanvasContainer").appendChild(splashRenderer.domElement);
+
+      splashScene.add(new THREE.AmbientLight(0xffffff, 1.8));
+      const splashLight = new THREE.DirectionalLight(0xfff1d1, 2);
+      splashLight.position.set(5, 8, 5);
+      splashScene.add(splashLight);
+
+      const splashRiderData = makeRider(bikeMats[0], 1, true);
+      splashScene.add(splashRiderData.root);
+      splashRiderData.root.position.set(0, 0, 0);
+      splashRiderData.root.rotation.y = Math.PI * 0.25;
+
+      let splashTime = 0;
+      function animateSplash(now) {
+        if (!gameStarted) {
+          requestAnimationFrame(animateSplash);
+        }
+        const dt = 0.016;
+        splashTime += dt;
+
+        splashRiderData.root.rotation.y = Math.PI * 0.25 + Math.sin(splashTime * 1.5) * 0.3;
+        splashRiderData.root.position.y = Math.sin(splashTime * 3) * 0.08;
+
+        splashRiderData.legs.forEach((leg, i) => {
+          const phase = splashTime * 6 + i * Math.PI;
+          leg.leg.rotation.z = Math.sin(phase) * 0.5;
+        });
+
+        splashRenderer.render(splashScene, splashCamera);
+      }
+      requestAnimationFrame(animateSplash);
+
+      // Gestion du bouton JOUER du menu
+      document.getElementById("startMenuBtn").addEventListener("click", () => {
+        gameStarted = true;
+        document.getElementById("mainMenu").classList.add("hidden");
+        setTimeout(() => {
+          splashRenderer.dispose();
+          document.getElementById("splashCanvasContainer").innerHTML = "";
+        }, 700);
+      });
 
       function showMessage(t) {
         message.textContent = t;
@@ -2389,15 +2610,17 @@
       }
 
       function togglePause() {
-        if (raceCompleted) return;
+        if (!gameStarted || raceCompleted) return;
 
         paused = !paused;
+        const pauseMenu = document.getElementById("pauseMenu");
 
         if (paused) {
           clearInputs();
-          message.textContent = "PAUSE";
-          message.style.display = "block";
+          pauseMenu.classList.add("show");
+          message.style.display = "none";
         } else {
+          pauseMenu.classList.remove("show");
           message.textContent = "REPRISE !";
           message.style.display = "block";
           clearTimeout(showMessage.timer);
@@ -2973,6 +3196,50 @@
         document.getElementById("raceResults").classList.add("show");
       }
 
+      function restartRace() {
+        document.getElementById("raceResults").classList.remove("show");
+        document.getElementById("pauseMenu").classList.remove("show");
+        raceStarted = false;
+        paused = false;
+        raceCompleted = false;
+        countdown = 3;
+        raceTime = 0;
+
+        player.s = 0;
+        player.speed = 0;
+        player.lane = 0;
+        player.stamina = 100;
+        player.finished = false;
+        player.finishTime = null;
+        player.fallen = 0;
+        player.laneVelocity = 0;
+        player.offRoadTime = 0;
+        player.crashCooldown = 0;
+        placeRiderOnTrack(player);
+
+        rivals.forEach((r, i) => {
+          r.s = -(i + 1) * 3.2;
+          r.speed = 14.5 + (i % 4) * 0.35;
+          r.lane = ((i % 3) - 1) * 2.5;
+          r.laneTarget = r.lane;
+          r.stamina = 100;
+          r.finished = false;
+          r.finishTime = null;
+          r.fallen = 0;
+          r.laneVelocity = 0;
+          r.crashCooldown = 0;
+          placeRiderOnTrack(r);
+        });
+
+        hydrationStations.forEach(st => st.usedBy.clear());
+
+        showMessage("3");
+      }
+
+      document.getElementById("resultRestart").addEventListener("click", restartRace);
+      document.getElementById("pauseRestart").addEventListener("click", restartRace);
+      document.getElementById("pauseResume").addEventListener("click", togglePause);
+
       function updateHUD() {
         document.getElementById("speed").innerHTML =
           Math.round(player.speed * 3.6) + " <small>KM/H</small>";
@@ -3225,6 +3492,9 @@
 
         const time = now * 0.001;
 
+        // Le jeu principal attend que le joueur clique sur JOUER dans le menu
+        if (!gameStarted) return;
+
         if (!paused) {
           updateEnvironment(time);
 
@@ -3309,11 +3579,7 @@
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
           if (!paused && !raceCompleted) {
-            paused = true;
-            clearInputs();
-
-            message.textContent = "PAUSE";
-            message.style.display = "block";
+            togglePause();
           }
         }
       });
