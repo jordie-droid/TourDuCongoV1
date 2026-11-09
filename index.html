@@ -91,7 +91,7 @@
         border-radius: 12px;
         width: 210px;
         max-height: 70vh;
-        overflow-y: auto;
+        overflow: hidden; /* Suppression de la scrollbar */
         border: 1px solid #ffffff30;
         font-size: 12px;
       }
@@ -138,15 +138,43 @@
         pointer-events: none;
       }
 
+      /* CIRCUIT PLACE EN HAUT PRES DU PANNEAU DE VITESSE */
       #map {
         position: absolute;
         left: 14px;
-        bottom: 160px;
-        width: 150px;
-        height: 110px;
+        top: 140px;
+        width: 160px;
+        height: 115px;
         background: #071522e8;
         border: 1px solid #ffffff55;
         border-radius: 10px;
+      }
+
+      /* BOUTON PAUSE EN HAUT A GAUCHE DU CLASSEMENT */
+      #topPauseBtn {
+        position: absolute;
+        right: 234px;
+        top: 14px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1.5px solid #ffffff90;
+        background: linear-gradient(145deg, #414c58, #18232c);
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 9px #0006;
+        cursor: pointer;
+        pointer-events: auto;
+        touch-action: none;
+        z-index: 10;
+      }
+      #topPauseBtn:active, #topPauseBtn.active {
+        transform: scale(0.93);
+        background: #37b9f5a8;
       }
 
       #touch {
@@ -188,12 +216,6 @@
       }
       #touch button[data-key="push"] {
         background: linear-gradient(145deg, #8c2929, #421414);
-      }
-      #touch button[data-key="brake"] {
-        background: linear-gradient(145deg, #963c32, #451b1b);
-      }
-      #touch button[data-key="pause"] {
-        background: linear-gradient(145deg, #414c58, #18232c);
       }
 
       #bar {
@@ -280,7 +302,7 @@
       #orientationWarning p {
         max-width: 420px;
         font-size: 15px;
-        line-height: 1.6;
+        line.height: 1.6;
         color: #d4e7f2;
       }
 
@@ -353,7 +375,8 @@
           right: 7px;
           bottom: auto;
           width: 145px;
-          max-height: 45vh;
+          max-height: 50vh;
+          overflow: hidden; /* Suppression scrollbar */
           padding: 7px 8px;
           font-size: 9px;
         }
@@ -363,17 +386,25 @@
           margin-bottom: 4px;
         }
         #ranking div {
-          padding: 3px 0;
+          padding: 2px 0;
         }
         #ranking div span {
           font-size: 8px;
         }
 
         #map {
-          width: 115px;
-          height: 85px;
-          left: 10px;
-          bottom: 145px;
+          width: 110px;
+          height: 80px;
+          left: 7px;
+          top: 98px;
+        }
+
+        #topPauseBtn {
+          right: 158px;
+          top: 7px;
+          width: 36px;
+          height: 36px;
+          font-size: 15px;
         }
 
         #bottom {
@@ -389,27 +420,27 @@
         }
       }
 
-      /* ===== MANETTE MOBILE REPOSITIONNÉE POUR DROITIERS ===== */
+      /* ===== DISPOSITION MOBILE ADAPTÉE ===== */
       @media (max-width: 1100px) and (orientation: landscape) {
         #touch {
           position: fixed !important;
-          inset: auto 0 max(8px, env(safe-area-inset-bottom)) 0 !important;
+          inset: auto 0 max(12px, env(safe-area-inset-bottom)) 0 !important;
           transform: none !important;
           width: 100% !important;
-          height: 150px !important;
+          height: 130px !important;
           display: flex !important;
           align-items: flex-end !important;
           justify-content: space-between !important;
-          padding: 0 18px !important;
+          padding: 0 20px !important;
           gap: 0 !important;
           pointer-events: none !important;
           z-index: 15 !important;
         }
 
-        /* JOYSTICK À GAUCHE */
+        /* JOYSTICK RONDE À GAUCHE */
         #touch .joystick {
-          width: 132px; height: 132px; border-radius: 50%;
-          position: relative; flex: 0 0 132px;
+          width: 120px; height: 120px; border-radius: 50%;
+          position: relative; flex: 0 0 120px;
           pointer-events: auto; touch-action: none;
           background: radial-gradient(circle, #d9f5ff20 0 34%, #c8efff12 35% 68%, #d9f5ff20 69% 100%);
           border: 2px solid #e5f8ff70;
@@ -422,65 +453,52 @@
         #touch .joystick:before { width:1px; height:80%; left:50%; top:10%; }
         #touch .joystick:after { height:1px; width:80%; top:50%; left:10%; }
         #touch .stick {
-          position:absolute; width:54px; height:54px; border-radius:50%;
+          position:absolute; width:48px; height:48px; border-radius:50%;
           left:50%; top:50%; transform:translate(-50%,-50%);
           background:radial-gradient(circle at 35% 30%, #ffffffb8, #8ddcff78 55%, #1b6d9278);
           border:2px solid #ffffffa0; box-shadow:0 3px 12px #0008;
           pointer-events:none;
         }
 
-        /* DISPOSITION ERGONOMIQUE MAIN DROITE */
+        /* SEULEMENT 2 BOUTONS A DROITE (TURBO + POUSSER) */
         #touch .mobile-actions {
-          display: grid;
-          grid-template-columns: repeat(3, 58px);
-          grid-template-rows: repeat(2, 58px);
-          gap: 10px;
+          display: flex;
+          gap: 16px;
           align-items: center;
-          justify-items: center;
           pointer-events: auto;
         }
 
         #touch button {
-          width: 56px !important; height: 56px !important;
-          min-width: 56px !important; min-height: 56px !important;
+          width: 62px !important; height: 62px !important;
+          min-width: 62px !important; min-height: 62px !important;
           padding: 0 !important; border-radius: 50% !important;
-          font-size: 20px !important; color: #fff !important;
-          background: #d8f2ff30 !important; border: 1.5px solid #ffffff90 !important;
+          font-size: 22px !important; color: #fff !important;
           box-shadow: 0 3px 12px #0005, inset 0 0 12px #ffffff18 !important;
           backdrop-filter: blur(3px); touch-action: none; pointer-events: auto;
         }
 
-        /* POSITIONNEMENT EXPLICITE PAR GRILLE DES BOUTONS */
-        #touch button[data-key="pause"] { grid-column: 1; grid-row: 1; background: #ffffff38 !important; }
-        #touch button[data-key="turbo"] { grid-column: 2; grid-row: 1; background: #e7a51d66 !important; border-color: #ffe18a !important; }
-        #touch button[data-key="accelerate"] {
-          grid-column: 3; grid-row: 1;
-          background: #24b87955 !important; border-color: #8affc6 !important;
-          width: 64px !important; height: 64px !important;
+        #touch button[data-key="turbo"] {
+          background: linear-gradient(145deg, #a96b08, #553400) !important;
+          border: 1.5px solid #ffd35b !important;
         }
-        #touch button[data-key="push"] { grid-column: 2; grid-row: 2; background: #8d62d866 !important; }
-        #touch button[data-key="brake"] {
-          grid-column: 3; grid-row: 2;
-          background: #d94b4b55 !important; border-color: #ff8a8a !important;
-          width: 62px !important; height: 62px !important;
+        #touch button[data-key="push"] {
+          background: linear-gradient(145deg, #8c2929, #421414) !important;
+          border: 1.5px solid #ff7b7b !important;
         }
 
-        #touch button:active, #touch button.active { transform: scale(.93); background: #37b9f5a8 !important; }
-        #touch button[data-key="left"], #touch button[data-key="right"] { display: none !important; }
-        #mobileHint { display: block !important; top: auto !important; bottom: 158px !important; left: 50% !important; font-size: 9px !important; }
+        #touch button:active, #touch button.active { transform: scale(.93); }
+        #mobileHint { display: none !important; }
         #bottom { display: none !important; }
       }
 
       @media (max-width: 650px) and (orientation: landscape) {
-        #touch { height: 124px !important; padding: 0 9px !important; }
-        #touch .joystick { width: 112px; height: 112px; flex-basis: 112px; }
-        #touch .stick { width: 46px; height: 46px; }
-        #touch .mobile-actions { grid-template-columns: repeat(3, 48px); grid-template-rows: repeat(2, 48px); gap: 6px; }
-        #touch button { width: 46px !important; height: 46px !important; min-width: 46px !important; min-height: 46px !important; font-size: 16px !important; }
-        #touch button[data-key="accelerate"] { width: 52px !important; height: 52px !important; }
-        #touch button[data-key="brake"] { width: 50px !important; height: 50px !important; }
-        #map { width: 90px; height: 68px; bottom: 130px; left: 8px; }
-        #mobileHint { bottom: 130px !important; }
+        #touch { height: 110px !important; padding: 0 12px !important; }
+        #touch .joystick { width: 100px; height: 100px; flex-basis: 100px; }
+        #touch .stick { width: 40px; height: 40px; }
+        #touch .mobile-actions { gap: 10px; }
+        #touch button { width: 52px !important; height: 52px !important; min-width: 52px !important; min-height: 52px !important; font-size: 18px !important; }
+        #map { width: 95px; height: 70px; top: 82px; left: 6px; }
+        #topPauseBtn { right: 132px; top: 6px; width: 32px; height: 32px; font-size: 13px; }
       }
 
       #raceResults {
@@ -539,12 +557,16 @@
         <div id="status">PRÊT POUR LA COURSE</div>
       </div>
 
+      <!-- CIRCUIT LOCALISÉ JUSTE EN-DESSOUS DU PANNEAU DE VITESSE -->
+      <canvas id="map" width="360" height="300"></canvas>
+
+      <!-- BOUTON PAUSE À GAUCHE DU CLASSEMENT -->
+      <button id="topPauseBtn" data-key="pause" aria-label="Pause">Ⅱ</button>
+
       <div id="right">
         <h3>CLASSEMENT — 10 COUREURS</h3>
         <div id="ranking"></div>
       </div>
-
-      <canvas id="map" width="360" height="300"></canvas>
 
       <div id="bottom">
         Z / ↑ : accélérer · S / ↓ : freiner<br />
@@ -556,18 +578,17 @@
 
       <div id="message">3</div>
 
+      <!-- MANETTE MOBILE MODIFIÉE (JOYSTICK + TURBO + POUSSER) -->
       <div id="touch" aria-label="Manette de jeu mobile">
         <div class="joystick" id="steeringJoystick" aria-label="Joystick directionnel">
           <div class="stick" id="steeringStick"></div>
         </div>
         <div class="mobile-actions">
-          <button data-key="pause" aria-label="Pause">Ⅱ</button>
           <button data-key="turbo" aria-label="Turbo">⚡</button>
-          <button data-key="accelerate" aria-label="Accélérer">▲</button>
           <button data-key="push" aria-label="Pousser">✊</button>
-          <button data-key="brake" aria-label="Freiner">▼</button>
         </div>
       </div>
+
       <div id="raceResults" role="dialog" aria-modal="true" aria-label="Résultats de la course">
         <div class="result-panel">
           <h2>COURSE TERMINÉE</h2>
@@ -2305,7 +2326,7 @@
         touchPointers.clear();
         resetJoystick();
 
-        document.querySelectorAll("#touch button").forEach((b) => {
+        document.querySelectorAll("#touch button, #topPauseBtn").forEach((b) => {
           b.classList.remove("active");
         });
       }
@@ -2345,7 +2366,8 @@
         keys.right = keys.right || joystickX > 0.22;
       }
 
-      document.querySelectorAll("#touch button").forEach((button) => {
+      // ÉCOUTEURS DE BOUTONS TACTILES Y COMPRIS BOUTON PAUSE EN HAUT
+      document.querySelectorAll("#touch button, #topPauseBtn").forEach((button) => {
         const key = button.dataset.key;
 
         button.addEventListener("pointerdown", (e) => {
@@ -2353,11 +2375,9 @@
           e.stopPropagation();
 
           if (key === "pause") {
-            if (!button.dataset.pressed) {
-              togglePause();
-              button.dataset.pressed = "1";
-              button.classList.add("active");
-            }
+            togglePause();
+            button.classList.add("active");
+            setTimeout(() => button.classList.remove("active"), 200);
             return;
           }
 
@@ -2372,11 +2392,7 @@
         });
 
         function releasePointer(e) {
-          if (key === "pause") {
-            button.dataset.pressed = "";
-            button.classList.remove("active");
-            return;
-          }
+          if (key === "pause") return;
 
           touchPointers.delete(e.pointerId);
           refreshTouchKeys();
@@ -2669,7 +2685,8 @@
         }
 
         if (isPlayer) {
-          const accel = keys.accelerate ? 13.5 : 0;
+          // SUR MOBILE : ACCELERATION AUTOMATIQUE OU DU CYCLE
+          const accel = keys.accelerate || isMobileDevice ? 13.5 : 0;
           const brake = keys.brake ? 25 : 0;
 
           r.braking = keys.brake;
@@ -2677,11 +2694,11 @@
           r.speed += accel * dt;
           r.speed -= brake * dt;
 
-          r.speed -= r.speed * (keys.accelerate ? 0.006 : 0.025) * dt * 60;
+          r.speed -= r.speed * (accel > 0 ? 0.006 : 0.025) * dt * 60;
 
           turboActive = false;
 
-          if (keys.turbo && r.stamina > 0 && keys.accelerate && !keys.brake) {
+          if (keys.turbo && r.stamina > 0 && !keys.brake) {
             r.speed += 23 * dt;
             r.stamina = Math.max(0, r.stamina - 18 * dt);
             turboActive = true;
