@@ -140,10 +140,10 @@
 
       #map {
         position: absolute;
-        right: 14px;
-        bottom: 14px;
-        width: 180px;
-        height: 150px;
+        left: 14px;
+        bottom: 160px;
+        width: 150px;
+        height: 110px;
         background: #071522e8;
         border: 1px solid #ffffff55;
         border-radius: 10px;
@@ -349,7 +349,7 @@
         }
 
         #right {
-          top: 52px;
+          top: 7px;
           right: 7px;
           bottom: auto;
           width: 145px;
@@ -370,25 +370,10 @@
         }
 
         #map {
-          width: 105px;
-          height: 78px;
-          right: 7px;
-          bottom: 57px;
-        }
-
-        #touch {
-          display: grid;
-          grid-template-columns: repeat(7, 48px);
-          gap: 5px;
-          bottom: max(5px, env(safe-area-inset-bottom));
-        }
-
-        #touch button {
-          min-width: 48px;
-          min-height: 42px;
-          padding: 5px;
-          font-size: 17px;
-          border-radius: 9px;
+          width: 115px;
+          height: 85px;
+          left: 10px;
+          bottom: 145px;
         }
 
         #bottom {
@@ -404,157 +389,7 @@
         }
       }
 
-      @media (max-width: 650px) and (orientation: landscape) {
-        #right {
-          width: 120px;
-          max-height: 40vh;
-          font-size: 8px;
-        }
-
-        #right h3 {
-          font-size: 9px;
-        }
-        #ranking div span {
-          font-size: 7px;
-        }
-
-        #map {
-          width: 85px;
-          height: 64px;
-          bottom: 52px;
-        }
-
-        #touch {
-          grid-template-columns: repeat(7, 42px);
-          gap: 4px;
-        }
-
-        #touch button {
-          min-width: 42px;
-          min-height: 38px;
-          font-size: 15px;
-        }
-
-        #left {
-          min-width: 95px;
-          padding: 6px 7px;
-        }
-
-        #speed {
-          font-size: 21px;
-        }
-        #top {
-          font-size: 9px;
-        }
-      }
-
-      @media (max-width: 800px) and (orientation: portrait) {
-        #right {
-          top: auto;
-          bottom: 225px;
-          width: 155px;
-          max-height: 32vh;
-          font-size: 10px;
-        }
-        #right h3 {
-          font-size: 11px;
-        }
-        #map {
-          width: 115px;
-          height: 90px;
-          bottom: 115px;
-          right: 10px;
-        }
-        #touch {
-          display: grid;
-          grid-template-columns: repeat(4, 52px);
-          gap: 6px;
-          bottom: max(10px, env(safe-area-inset-bottom));
-        }
-        #touch button {
-          padding: 9px 5px;
-          min-width: 52px;
-          min-height: 46px;
-          font-size: 18px;
-          border-radius: 10px;
-        }
-        #bottom {
-          display: none;
-        }
-        #mobileHint {
-          display: block;
-        }
-        #left {
-          padding: 8px 10px;
-          min-width: 125px;
-          left: 9px;
-          top: 9px;
-        }
-        #speed {
-          font-size: 27px;
-        }
-        #speed small {
-          font-size: 10px;
-        }
-        #top {
-          font-size: 10px;
-          gap: 5px;
-          padding: 7px 9px;
-          top: 9px;
-        }
-        #message {
-          top: 38%;
-          font-size: clamp(35px, 10vw, 60px);
-        }
-      }
-
-      @media (max-width: 390px) and (orientation: portrait) {
-        #right {
-          width: 135px;
-          right: 7px;
-        }
-        #touch {
-          grid-template-columns: repeat(4, 46px);
-          gap: 5px;
-        }
-        #touch button {
-          min-width: 46px;
-          min-height: 43px;
-          font-size: 16px;
-        }
-        #map {
-          width: 100px;
-          height: 80px;
-        }
-        #top {
-          font-size: 9px;
-        }
-      }
-
-      @media (max-height: 500px) and (max-width: 900px) and (orientation: landscape) {
-        #touch {
-          grid-template-columns: repeat(7, 48px);
-          bottom: 5px;
-        }
-        #touch button {
-          min-height: 42px;
-        }
-        #right {
-          bottom: auto;
-          top: 50px;
-          max-height: 40vh;
-        }
-        #map {
-          bottom: 55px;
-          width: 100px;
-          height: 75px;
-        }
-        #mobileHint {
-          display: none;
-        }
-      }
-
-      /* ===== NOUVELLE MANETTE MOBILE TRANSPARENTE ===== */
+      /* ===== MANETTE MOBILE REPOSITIONNÉE POUR DROITIERS ===== */
       @media (max-width: 1100px) and (orientation: landscape) {
         #touch {
           position: fixed !important;
@@ -570,6 +405,8 @@
           pointer-events: none !important;
           z-index: 15 !important;
         }
+
+        /* JOYSTICK À GAUCHE */
         #touch .joystick {
           width: 132px; height: 132px; border-radius: 50%;
           position: relative; flex: 0 0 132px;
@@ -591,41 +428,61 @@
           border:2px solid #ffffffa0; box-shadow:0 3px 12px #0008;
           pointer-events:none;
         }
+
+        /* DISPOSITION ERGONOMIQUE MAIN DROITE */
         #touch .mobile-actions {
-          display:grid; grid-template-columns:repeat(3, minmax(54px, 68px));
-          grid-template-rows:repeat(2, 58px); gap:9px;
-          align-items:center; justify-items:center; pointer-events:auto;
+          display: grid;
+          grid-template-columns: repeat(3, 58px);
+          grid-template-rows: repeat(2, 58px);
+          gap: 10px;
+          align-items: center;
+          justify-items: center;
+          pointer-events: auto;
         }
+
         #touch button {
-          width:58px !important; height:58px !important; min-width:58px !important;
-          min-height:58px !important; padding:0 !important; border-radius:50% !important;
-          font-size:20px !important; color:#fff !important;
-          background:#d8f2ff30 !important; border:1.5px solid #ffffff90 !important;
-          box-shadow:0 3px 12px #0005, inset 0 0 12px #ffffff18 !important;
-          backdrop-filter:blur(3px); touch-action:none; pointer-events:auto;
+          width: 56px !important; height: 56px !important;
+          min-width: 56px !important; min-height: 56px !important;
+          padding: 0 !important; border-radius: 50% !important;
+          font-size: 20px !important; color: #fff !important;
+          background: #d8f2ff30 !important; border: 1.5px solid #ffffff90 !important;
+          box-shadow: 0 3px 12px #0005, inset 0 0 12px #ffffff18 !important;
+          backdrop-filter: blur(3px); touch-action: none; pointer-events: auto;
         }
+
+        /* POSITIONNEMENT EXPLICITE PAR GRILLE DES BOUTONS */
+        #touch button[data-key="pause"] { grid-column: 1; grid-row: 1; background: #ffffff38 !important; }
+        #touch button[data-key="turbo"] { grid-column: 2; grid-row: 1; background: #e7a51d66 !important; border-color: #ffe18a !important; }
         #touch button[data-key="accelerate"] {
-          background:#24b87955 !important; border-color:#8affc6 !important;
-          width:66px !important; height:66px !important;
+          grid-column: 3; grid-row: 1;
+          background: #24b87955 !important; border-color: #8affc6 !important;
+          width: 64px !important; height: 64px !important;
         }
-        #touch button[data-key="brake"] { background:#d94b4b55 !important; }
-        #touch button[data-key="turbo"] { background:#e7a51d66 !important; border-color:#ffe18a !important; }
-        #touch button[data-key="push"] { background:#8d62d866 !important; }
-        #touch button[data-key="pause"] { background:#ffffff38 !important; }
-        #touch button:active, #touch button.active { transform:scale(.93); background:#37b9f5a8 !important; }
-        #touch button[data-key="left"], #touch button[data-key="right"] { display:none !important; }
-        #mobileHint { display:block !important; top:auto !important; bottom:158px !important; left:50% !important; font-size:9px !important; }
-        #bottom { display:none !important; }
+        #touch button[data-key="push"] { grid-column: 2; grid-row: 2; background: #8d62d866 !important; }
+        #touch button[data-key="brake"] {
+          grid-column: 3; grid-row: 2;
+          background: #d94b4b55 !important; border-color: #ff8a8a !important;
+          width: 62px !important; height: 62px !important;
+        }
+
+        #touch button:active, #touch button.active { transform: scale(.93); background: #37b9f5a8 !important; }
+        #touch button[data-key="left"], #touch button[data-key="right"] { display: none !important; }
+        #mobileHint { display: block !important; top: auto !important; bottom: 158px !important; left: 50% !important; font-size: 9px !important; }
+        #bottom { display: none !important; }
       }
+
       @media (max-width: 650px) and (orientation: landscape) {
-        #touch { height:124px !important; padding:0 9px !important; }
-        #touch .joystick { width:112px; height:112px; flex-basis:112px; }
-        #touch .stick { width:46px; height:46px; }
-        #touch .mobile-actions { grid-template-columns:repeat(3, 52px); grid-template-rows:repeat(2, 48px); gap:5px; }
-        #touch button { width:48px !important; height:48px !important; min-width:48px !important; min-height:48px !important; font-size:17px !important; }
-        #touch button[data-key="accelerate"] { width:54px !important; height:54px !important; }
-        #mobileHint { bottom:130px !important; }
+        #touch { height: 124px !important; padding: 0 9px !important; }
+        #touch .joystick { width: 112px; height: 112px; flex-basis: 112px; }
+        #touch .stick { width: 46px; height: 46px; }
+        #touch .mobile-actions { grid-template-columns: repeat(3, 48px); grid-template-rows: repeat(2, 48px); gap: 6px; }
+        #touch button { width: 46px !important; height: 46px !important; min-width: 46px !important; min-height: 46px !important; font-size: 16px !important; }
+        #touch button[data-key="accelerate"] { width: 52px !important; height: 52px !important; }
+        #touch button[data-key="brake"] { width: 50px !important; height: 50px !important; }
+        #map { width: 90px; height: 68px; bottom: 130px; left: 8px; }
+        #mobileHint { bottom: 130px !important; }
       }
+
       #raceResults {
         display:none; position:fixed; inset:0; z-index:50;
         align-items:center; justify-content:center; padding:16px;
@@ -654,7 +511,6 @@
         display:block; margin:15px auto 0; padding:11px 24px; border-radius:10px;
         border:1px solid #8de1ff; background:#0877a8; color:white; font-weight:900;
       }
-
     </style>
   </head>
 
@@ -705,11 +561,11 @@
           <div class="stick" id="steeringStick"></div>
         </div>
         <div class="mobile-actions">
-          <button data-key="brake" aria-label="Freiner">▼</button>
-          <button data-key="accelerate" aria-label="Accélérer">▲</button>
-          <button data-key="turbo" aria-label="Turbo">⚡</button>
-          <button data-key="push" aria-label="Pousser">✊</button>
           <button data-key="pause" aria-label="Pause">Ⅱ</button>
+          <button data-key="turbo" aria-label="Turbo">⚡</button>
+          <button data-key="accelerate" aria-label="Accélérer">▲</button>
+          <button data-key="push" aria-label="Pousser">✊</button>
+          <button data-key="brake" aria-label="Freiner">▼</button>
         </div>
       </div>
       <div id="raceResults" role="dialog" aria-modal="true" aria-label="Résultats de la course">
@@ -803,19 +659,9 @@
         Math.min(devicePixelRatio, isMobileDevice ? 1.15 : 1.5),
       );
 
-      // Les ombres dynamiques sont coûteuses sur téléphone.
       renderer.shadowMap.enabled = !isMobileDevice;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.15;
-
-      document.body.appendChild(renderer.domElement);
-
-      renderer.setSize(innerWidth, innerHeight);
-      renderer.setPixelRatio(Math.min(devicePixelRatio, 1.6));
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.15;
 
@@ -930,10 +776,6 @@
         return ((s % LAP) + LAP) % LAP;
       }
 
-      /* =========================================================
-   RELIEF DE LA PISTE : MONTÉES ET DESCENTES
-========================================================= */
-
       function hillProfile(s, center, width, height) {
         const distance = Math.abs(normS(s - center));
         const shortest = Math.min(distance, LAP - distance);
@@ -981,10 +823,6 @@
         return d;
       }
 
-      /* =========================================================
-   PHYSIQUE DES VIRAGES — FORCE CENTRIFUGE
-========================================================= */
-
       function curvatureAt(s) {
         const a = tangentAt(s - 2);
         const b = tangentAt(s + 2);
@@ -996,8 +834,6 @@
 
       function cornerForce(r) {
         const curvature = curvatureAt(r.s);
-
-        // Force centrifuge proportionnelle au carré de la vitesse
         const centrifugal = -curvature * r.speed * r.speed * 0.42;
 
         return centrifugal;
@@ -1076,8 +912,6 @@
         return mesh;
       }
 
-      /* Chaussée et trottoirs */
-
       makeStrip(0, WIDTH + 13, M.sidewalk, 0.005);
       makeStrip(0, WIDTH, M.road, 0.035);
       makeStrip(-WIDTH / 2 - 3.5, 5.5, M.sidewalk, 0.025);
@@ -1086,15 +920,9 @@
       makeStrip(-WIDTH / 2 - 7, 0.65, M.dark, 0.035);
       makeStrip(WIDTH / 2 + 7, 0.65, M.dark, 0.035);
 
-      /* Lignes de chaussée */
-
       makeStrip(-WIDTH / 2 + 1, 0.18, M.white, 0.07);
       makeStrip(WIDTH / 2 - 1, 0.18, M.white, 0.07);
       makeStrip(0, 0.13, M.yellow, 0.065);
-
-      /* =========================================================
-   RALENTISSEURS VISIBLES
-========================================================= */
 
       const SPEED_BUMPS = [
         { s: LAP * 0.3 },
@@ -1141,8 +969,6 @@
 
       SPEED_BUMPS.forEach((b) => createSpeedBump(b.s));
 
-      /* Bordures */
-
       for (let s = 0; s < LAP; s += 5) {
         for (const lane of [-WIDTH / 2 - 1, WIDTH / 2 + 1]) {
           const p = positionAt(s, lane),
@@ -1160,8 +986,6 @@
           scene.add(box);
         }
       }
-
-      /* Passages piétons */
 
       function crosswalk(s) {
         const p = positionAt(s, 0),
@@ -1188,8 +1012,6 @@
 
       [0.08, 0.24, 0.43, 0.62, 0.81, 0.94].forEach((f) => crosswalk(LAP * f));
 
-      /* Lignes d'arrêt */
-
       for (const f of [0.08, 0.24, 0.43, 0.62, 0.81, 0.94]) {
         const p = positionAt(LAP * f, 0),
           d = tangentAt(LAP * f);
@@ -1205,8 +1027,6 @@
 
         scene.add(line);
       }
-
-      /* Ligne de départ */
 
       {
         const p = positionAt(0, 0);
@@ -1236,7 +1056,7 @@
       }
 
       /* =========================================================
-   ARCHITECTURE URBAINE
+   ARCHITECTURE URBAINE & ACCESSOIRES
 ========================================================= */
 
       const buildingColors = [
@@ -1340,8 +1160,6 @@
         return group;
       }
 
-      /* Première rangée */
-
       for (let i = 0; i < 120; i++) {
         const s = (LAP * i) / 120;
         const side = i % 2 ? 1 : -1;
@@ -1357,8 +1175,6 @@
         const building = addBuilding(p.x, p.z, width, depth, height, i);
         building.rotation.y = angle;
       }
-
-      /* Deuxième rangée */
 
       for (let i = 0; i < 70; i++) {
         const s = (LAP * (i + 0.4)) / 70;
@@ -1379,8 +1195,6 @@
         b.rotation.y = Math.atan2(-d.z, d.x);
       }
 
-      /* Immeubles hauts */
-
       for (let i = 0; i < 30; i++) {
         const a = (i / 30) * Math.PI * 2;
         const radius = 240 + (i % 5) * 13;
@@ -1397,10 +1211,6 @@
         tower.castShadow = true;
         scene.add(tower);
       }
-
-      /* =========================================================
-   ENSEIGNES ET MARCHÉS
-========================================================= */
 
       function makeSignTexture(label, color) {
         const c = document.createElement("canvas");
@@ -1460,8 +1270,6 @@
         shopSign((LAP * i) / 40, i % 2 ? 1 : -1, a[0], a[1]);
       }
 
-      /* Kiosques */
-
       function kiosk(s, side, index) {
         const p = positionAt(s, side * (WIDTH / 2 + 8));
         const d = tangentAt(s);
@@ -1512,8 +1320,6 @@
         kiosk((LAP * (i + 0.3)) / 34, i % 2 ? 1 : -1, i);
       }
 
-      /* Auvents */
-
       for (let i = 0; i < 16; i++) {
         const s = (LAP * (i + 0.6)) / 16;
         const side = i % 2 ? 1 : -1;
@@ -1544,10 +1350,6 @@
 
         scene.add(g);
       }
-
-      /* =========================================================
-   MOBILIER URBAIN
-========================================================= */
 
       function streetLamp(s, side) {
         const p = positionAt(s, side * (WIDTH / 2 + 6));
@@ -1630,8 +1432,6 @@
         trafficLight(LAP * f, -1);
       });
 
-      /* Panneaux */
-
       function directionSign(s, side, label) {
         const p = positionAt(s, side * (WIDTH / 2 + 7));
         const d = tangentAt(s);
@@ -1665,10 +1465,6 @@
       directionSign(LAP * 0.52, 1, "LIMETE");
       directionSign(LAP * 0.74, -1, "CENTRE VILLE");
       directionSign(LAP * 0.89, 1, "KINSHASA");
-
-      /* =========================================================
-   ARBRES ET PALMIERS
-========================================================= */
 
       const treeMaterials = [
         mat(0x236b37),
@@ -1724,10 +1520,6 @@
         tree(p.x, p.z, 0.8 + (i % 3) * 0.12, i);
       }
 
-      /* =========================================================
-   VÉHICULES STATIQUES
-========================================================= */
-
       const carColors = [
         0xd72e32, 0xe4e4e4, 0x2366a8, 0x20252a, 0xd4a62b, 0x34885b,
       ];
@@ -1778,11 +1570,6 @@
       for (let i = 0; i < 20; i++) {
         parkedCar((LAP * (i + 0.2)) / 20, i % 2 ? 1 : -1, i);
       }
-
-
-      /* =========================================================
-         SUPPORTERS ET ZONES DE RAVITAILLEMENT
-      ========================================================= */
 
       const supporters = [];
       const hydrationStations = [];
@@ -1838,7 +1625,6 @@
           armPivots.push(pivot);
         }
 
-        // Certains supporters tiennent un petit drapeau.
         if (index % 3 === 0) {
           const pole = new THREE.Mesh(
             new THREE.CylinderGeometry(0.025, 0.025, 1.25, 5),
@@ -1861,7 +1647,6 @@
         });
       }
 
-      // Deux petits groupes alternés sur les côtés du parcours.
       for (let i = 0; i < 64; i++) {
         const sFan = (LAP * (i + 0.25)) / 64;
         const side = i % 2 === 0 ? -1 : 1;
@@ -2116,8 +1901,6 @@
         bottle.rotation.z = -0.3;
         bike.add(bottle);
 
-        /* Torse */
-
         const torso = new THREE.Group();
         torso.position.set(-0.12, 1.52, 0);
         torso.rotation.z = -0.52;
@@ -2216,8 +1999,6 @@
           root.add(vent);
         }
 
-        /* Bras */
-
         const arms = [];
 
         for (const side of [-1, 1]) {
@@ -2259,8 +2040,6 @@
 
           arms.push(arm);
         }
-
-        /* Jambes et pieds */
 
         const legs = [];
 
@@ -2313,8 +2092,6 @@
 
           legs.push({ leg, foot, side });
         }
-
-        /* Dossard */
 
         const bib = new THREE.Mesh(
           new THREE.PlaneGeometry(0.42, 0.25),
@@ -2415,10 +2192,6 @@
           contactCooldown: 0,
         });
       }
-
-      /* =========================================================
-   OBSTACLES URBAINS
-========================================================= */
 
       const obstacles = [];
 
@@ -2558,8 +2331,6 @@
         }
       });
 
-      /* Gestion multi-touch */
-
       const touchPointers = new Map();
 
       function refreshTouchKeys() {
@@ -2570,7 +2341,6 @@
         for (const k of touchPointers.values()) {
           if (k !== "pause") keys[k] = true;
         }
-        // Ne pas annuler la direction du joystick lorsqu'un autre bouton est touché.
         keys.left = keys.left || joystickX < -0.22;
         keys.right = keys.right || joystickX > 0.22;
       }
@@ -2675,10 +2445,6 @@
         }
       }
 
-      /* =========================================================
-   CHUTES
-========================================================= */
-
       function makeCrash(r, duration = 1.8) {
         if (r.finished || r.fallen > 0 || r.crashCooldown > 0) return;
 
@@ -2703,10 +2469,6 @@
         r.root.position.copy(p);
         r.root.position.y = p.y + RIDER_FALL_OFFSET;
       }
-
-      /* =========================================================
-   PÉDALAGE ET ANIMATION
-========================================================= */
 
       function animatePedaling(r, time, isSprinting = false) {
         const cadence = 1.8 + Math.min(r.speed, 22) * 0.16;
@@ -2743,17 +2505,11 @@
 
       function circularDistance(a, b) {
         let d = Math.abs(normS(a) - normS(b));
-
         return Math.min(d, LAP - d);
       }
 
-      /* =========================================================
-   IA : CHOIX DE COULOIR
-========================================================= */
-
       function chooseAILane(r, dt) {
         const roadLimit = WIDTH / 2 - 1.5;
-
         let target = r.laneTarget ?? r.lane;
 
         const wave = Math.sin(r.s * 0.018 + r.raceStyle * 2.1) * 1.1;
@@ -2789,17 +2545,14 @@
 
           function laneSpace(lane) {
             let space = 10;
-
             for (const other of [player, ...rivals]) {
               if (other === r || other.fallen > 0 || other.finished) continue;
-
               const ahead = normS(other.s - r.s);
 
               if (ahead < 8 && Math.abs(other.lane - lane) < 2.1) {
                 space = Math.min(space, ahead);
               }
             }
-
             return space;
           }
 
@@ -2844,10 +2597,6 @@
         return THREE.MathUtils.clamp(target, -roadLimit, roadLimit);
       }
 
-      /* =========================================================
-   MISE À JOUR DU CYCLISTE
-========================================================= */
-
       function updateRider(r, dt, isPlayer = false) {
         const time = performance.now() * 0.001;
 
@@ -2855,13 +2604,9 @@
 
         r.crashCooldown = Math.max(0, r.crashCooldown - dt);
 
-        /* Rotation des roues */
-
         for (const wheel of r.wheels) {
           wheel.rotation.z -= (r.speed * dt) / 0.52;
         }
-
-        /* Gestion de la chute */
 
         if (r.fallen > 0) {
           r.fallen -= dt;
@@ -2923,26 +2668,16 @@
           return;
         }
 
-        /* =====================================================
-    COMMANDES DU JOUEUR
- ===================================================== */
-
         if (isPlayer) {
           const accel = keys.accelerate ? 13.5 : 0;
           const brake = keys.brake ? 25 : 0;
 
           r.braking = keys.brake;
 
-          /* Accélération progressive */
-
           r.speed += accel * dt;
           r.speed -= brake * dt;
 
-          /* Résistance naturelle */
-
           r.speed -= r.speed * (keys.accelerate ? 0.006 : 0.025) * dt * 60;
-
-          /* TURBO */
 
           turboActive = false;
 
@@ -2954,26 +2689,13 @@
             r.stamina = Math.min(100, r.stamina + 12 * dt);
           }
 
-          /* Limite de vitesse */
-
           r.speed = THREE.MathUtils.clamp(r.speed, 0, 25);
 
-          /* =====================================================
-     DIRECTION CORRIGÉE DU JOUEUR
-  ===================================================== */
-
-          /* =====================================================
-   PHYSIQUE DE CONDUITE RÉALISTE
-===================================================== */
-
           const steerInput = (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
-
           const roadLimit = WIDTH / 2 - 1;
 
-          // Progression de la direction
           r.steer = THREE.MathUtils.damp(r.steer, steerInput, 9, dt);
 
-          // Force centrifuge dans les virages
           const centrifugal = cornerForce(r);
 
           const steeringAcceleration =
@@ -2981,34 +2703,18 @@
 
           const lateralDrag = 1.15;
 
-          // Résultante des forces
           r.lateralAcceleration =
             steeringAcceleration + centrifugal - r.laneVelocity * lateralDrag;
 
-          // Intégration de la vitesse latérale
           r.laneVelocity += r.lateralAcceleration * dt;
-
-          // Limitation de la vitesse latérale
           r.laneVelocity = THREE.MathUtils.clamp(r.laneVelocity, -9, 9);
-
-          // Déplacement latéral
           r.lane += r.laneVelocity * dt;
 
-          /*
-           * IMPORTANT :
-           * Aucun recentrage automatique.
-           * Le joueur doit réellement diriger son vélo.
-           */
-
-          // Limite physique très éloignée pour éviter
-          // que le cycliste disparaisse brutalement.
           r.lane = THREE.MathUtils.clamp(
             r.lane,
             -WIDTH / 2 - 18,
             WIDTH / 2 + 18,
           );
-
-          /* INCLINAISON DU CYCLISTE */
 
           const targetLean = THREE.MathUtils.clamp(
             -r.lateralAcceleration * 0.055,
@@ -3032,33 +2738,22 @@
             dt,
           );
 
-          /* =====================================================
-   SORTIE DE PISTE
-===================================================== */
-
           r.isOffRoad = Math.abs(r.lane) > roadLimit;
 
           if (r.isOffRoad) {
             r.offRoadTime += dt;
-
-            // Perte d'adhérence et ralentissement
             r.speed = Math.max(1, r.speed - 9 * dt);
 
-            // Instabilité du vélo
             const side = r.lane > 0 ? 1 : -1;
-
             r.lean = THREE.MathUtils.damp(r.lean, -side * 0.38, 4, dt);
-
             r.laneVelocity *= 0.995;
 
-            // Une sortie prolongée provoque une chute
             if (r.offRoadTime > 0.48 || Math.abs(r.lane) > WIDTH / 2 + 4) {
               makeCrash(r, 2.1);
             }
           } else {
             r.offRoadTime = Math.max(0, r.offRoadTime - dt * 1.5);
           }
-          /* POUSSER UN ADVERSAIRE */
 
           r.pushCooldown = Math.max(0, r.pushCooldown - dt);
 
@@ -3078,39 +2773,25 @@
 
             if (nearest) {
               nearest.speed = Math.max(1.5, nearest.speed - 8);
-
               makeCrash(nearest, 1.65);
-
               r.speed = Math.max(0, r.speed - 1.2);
               r.pushCooldown = 2.2;
-
               showMessage("POUSSÉE !");
             }
           }
         } else {
-          /* =====================================================
-     INTELLIGENCE ARTIFICIELLE
-  ===================================================== */
-
           const baseSpeed = 22.5 + (r.skill - 0.94) * 27;
-
           const gapToPlayer = player.s - r.s;
-
           const catchUp = THREE.MathUtils.clamp(gapToPlayer / 55, -1, 1) * 1.15;
-
           const attackWave = Math.sin(
             time * 0.72 + r.s * 0.012 + r.raceStyle * 2,
           );
 
           const attack = attackWave > 0.48 ? (attackWave - 0.48) * 1.5 : 0;
-
           let targetSpeed = baseSpeed + catchUp + attack;
-
-          /* Aspiration derrière un adversaire */
 
           for (const other of [player, ...rivals]) {
             if (other === r || other.fallen > 0 || other.finished) continue;
-
             const ahead = normS(other.s - r.s);
 
             if (
@@ -3124,17 +2805,11 @@
           }
 
           targetSpeed = THREE.MathUtils.clamp(targetSpeed, 21, 27);
-
           r.speed += (targetSpeed - r.speed) * 1.15 * dt;
-
           r.speed = THREE.MathUtils.clamp(r.speed, 0, 27);
 
-          /* Changement de couloir */
-
           const desiredLane = chooseAILane(r, dt);
-
           r.lane = THREE.MathUtils.damp(r.lane, desiredLane, 1.5, dt);
-
           r.lane = THREE.MathUtils.clamp(
             r.lane,
             -WIDTH / 2 + 1.2,
@@ -3176,10 +2851,6 @@
           }
         }
 
-        /* =====================================================
-    RALENTISSEURS : RÉDUCTION DE VITESSE
- ===================================================== */
-
         for (const bump of SPEED_BUMPS) {
           const distance = normS(bump.s - r.s);
 
@@ -3202,8 +2873,6 @@
           }
         }
 
-        /* AVANCEMENT SUR LA COURBE */
-
         r.s += r.speed * dt;
 
         if (r.s >= TOTAL) {
@@ -3213,38 +2882,21 @@
           if (r.finishTime == null) r.finishTime = raceTime;
         }
 
-        /*
-         * ORIENTATION AUTOMATIQUE :
-         * le vélo regarde toujours dans la direction de la piste,
-         * y compris lorsque la piste tourne à gauche ou à droite.
-         */
-
         const d = tangentAt(r.s);
-
         const trackHeading = Math.atan2(-d.z, d.x);
 
         r.root.rotation.y = trackHeading;
         r.root.rotation.x = r.lean;
 
-        /*
-         * La position est calculée à partir de la distance parcourue
-         * sur la courbe et du décalage latéral.
-         */
-
         placeRiderOnTrack(r);
 
         if (r.bumpShake > 0) {
           r.root.position.y += Math.sin(time * 42) * r.bumpShake;
-
           r.bumpShake = Math.max(0, r.bumpShake - dt * 0.12);
         }
 
         animatePedaling(r, time, isPlayer && turboActive);
       }
-
-      /* =========================================================
-   COLLISIONS ENTRE CYCLISTES ET OBSTACLES
-========================================================= */
 
       function collisions() {
         const all = [player, ...rivals];
@@ -3252,7 +2904,6 @@
           rider.contactCooldown = Math.max(0, (rider.contactCooldown || 0) - 1 / 60);
         }
 
-        // Contacts vélo-vélo : séparation progressive et réaction à l'impact.
         for (let i = 0; i < all.length; i++) {
           for (let j = i + 1; j < all.length; j++) {
             const a = all[i], b = all[j];
@@ -3300,7 +2951,6 @@
           }
         }
 
-        // Contacts avec les cônes et obstacles fixes.
         for (const o of obstacles) {
           for (const r of all) {
             if (r.finished || r.fallen > 0 || r.crashCooldown > 0) continue;
@@ -3315,7 +2965,6 @@
           }
         }
 
-        // Ravitaillement : le coureur passe près de la table pour prendre une bouteille.
         for (const station of hydrationStations) {
           for (const r of all) {
             if (r.finished || r.fallen > 0 || station.usedBy.has(r)) continue;
@@ -3331,7 +2980,7 @@
         }
       }
 
-            function standings() {
+      function standings() {
         const all = [player, ...rivals].slice();
         if (raceCompleted) {
           return all.sort((a, b) => (a.finishTime ?? Infinity) - (b.finishTime ?? Infinity));
@@ -3406,10 +3055,6 @@
         document.getElementById("raceResults").classList.remove("show");
       });
 
-      /* =========================================================
-   MINI-CARTE
-========================================================= */
-
       function drawMap() {
         const c = document.getElementById("map");
         const x = c.getContext("2d");
@@ -3482,10 +3127,6 @@
         }
       }
 
-      /* =========================================================
-   CAMÉRA DE POURSUITE
-========================================================= */
-
       const cameraSmoothPosition = new THREE.Vector3();
       const cameraSmoothLook = new THREE.Vector3();
 
@@ -3554,10 +3195,6 @@
         camera.updateProjectionMatrix();
       }
 
-      /* =========================================================
-   ARRIVÉE ET FIN DE COURSE
-========================================================= */
-
       function finishCheck() {
         if (player.s >= TOTAL && !player.finished) {
           player.s = TOTAL;
@@ -3597,12 +3234,7 @@
         }
       }
 
-      /* =========================================================
-   ANIMATION ENVIRONNEMENT
-========================================================= */
-
       function updateEnvironment(time) {
-        // Animation légère des supporters : bras levés et drapeaux en mouvement.
         for (const fan of supporters) {
           const wave = Math.sin(time * 4.2 + fan.phase);
           fan.armPivots.forEach((arm, i) => {
@@ -3619,10 +3251,6 @@
           );
         }
       }
-
-      /* =========================================================
-   BOUCLE PRINCIPALE
-========================================================= */
 
       function animate(now) {
         requestAnimationFrame(animate);
@@ -3677,10 +3305,6 @@
         renderer.render(scene, camera);
       }
 
-      /* =========================================================
-   POSITIONS INITIALES
-========================================================= */
-
       player.root.rotation.x = player.lean;
       placeRiderOnTrack(player);
 
@@ -3697,10 +3321,6 @@
       drawMap();
 
       requestAnimationFrame(animate);
-
-      /* =========================================================
-   REDIMENSIONNEMENT ET MOBILE
-========================================================= */
 
       function resizeGame() {
         camera.aspect = innerWidth / innerHeight;
@@ -3721,8 +3341,6 @@
         screen.orientation.addEventListener?.("change", resizeGame);
       }
 
-      /* Mise en pause lors d'un changement d'application */
-
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
           if (!paused && !raceCompleted) {
@@ -3734,8 +3352,6 @@
           }
         }
       });
-
-      /* Réinitialisation des commandes en cas de perte de focus */
 
       addEventListener("pagehide", clearInputs);
     </script>
