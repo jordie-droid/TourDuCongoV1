@@ -8,7 +8,7 @@
     />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#071522" />
-    <title>VELO 3D Championship — Kinshasa Urban Race</title>
+    <title>VELO 3D Championship — Kinshasa & Goma Realistic Edition</title>
 
     <style>
       * {
@@ -60,7 +60,7 @@
         background: #071522cc;
         border: 1px solid #ffffff30;
         backdrop-filter: blur(12px);
-        padding: 35px 30px;
+        padding: 30px 25px;
         border-radius: 24px;
         box-shadow: 0 20px 50px #0009;
         animation: menuSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -81,14 +81,14 @@
         font-size: 11px;
         font-weight: 900;
         letter-spacing: 2px;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         text-transform: uppercase;
       }
 
       .menu-container h1 {
-        font-size: clamp(28px, 6vw, 48px);
+        font-size: clamp(26px, 5vw, 42px);
         font-weight: 1000;
-        margin: 0 0 10px;
+        margin: 0 0 8px;
         letter-spacing: 1px;
         background: linear-gradient(180deg, #ffffff 30%, #8de1ff 100%);
         -webkit-background-clip: text;
@@ -103,16 +103,58 @@
 
       .menu-container p {
         color: #c4d9e5;
-        font-size: 14px;
-        line-height: 1.6;
-        margin: 0 0 25px;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 0 0 20px;
+      }
+
+      /* SÉLECTEUR DE CIRCUITS */
+      .track-selector {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 22px;
+      }
+
+      .track-card {
+        flex: 1;
+        background: #0f2537aa;
+        border: 2px solid #ffffff30;
+        border-radius: 14px;
+        padding: 12px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        text-align: center;
+      }
+
+      .track-card:hover {
+        border-color: #3ee6ff80;
+        transform: translateY(-2px);
+      }
+
+      .track-card.selected {
+        background: linear-gradient(145deg, #0072ff35, #00c6ff25);
+        border-color: #00d2ff;
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+      }
+
+      .track-card h3 {
+        margin: 0 0 4px;
+        font-size: 15px;
+        color: #fff;
+      }
+
+      .track-card p {
+        margin: 0;
+        font-size: 11px;
+        color: #9ab4c3;
       }
 
       .menu-btn {
         background: linear-gradient(145deg, #00c6ff, #0072ff);
         color: white;
         border: none;
-        padding: 16px 40px;
+        padding: 15px 38px;
         font-size: 18px;
         font-weight: 900;
         border-radius: 14px;
@@ -120,6 +162,7 @@
         box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
         transition: transform 0.2s, box-shadow 0.2s;
         letter-spacing: 1px;
+        width: 100%;
       }
 
       .menu-btn:hover {
@@ -565,24 +608,24 @@
 
       #raceResults {
         display:none; position:fixed; inset:0; z-index:50;
-        align-items:flex-end; justify-content:center; padding:20px;
-        background: linear-gradient(0deg, rgba(2,10,18,0.85) 0%, rgba(2,10,18,0) 60%);
+        align-items:center; justify-content:center; padding:15px;
+        background: linear-gradient(0deg, rgba(2,10,18,0.85) 0%, rgba(2,10,18,0.6) 100%);
         pointer-events:auto;
       }
       #raceResults.show { display:flex; }
       #raceResults .result-panel {
-        width:min(520px, 94vw); max-height:45vh; overflow:auto;
+        width:min(500px, 94vw); overflow:hidden;
         background:linear-gradient(155deg,#183849f5,#071522f7);
         border:1px solid #9de7ff80; border-radius:18px;
-        box-shadow:0 16px 50px #0009; padding:16px;
+        box-shadow:0 16px 50px #0009; padding:14px clamp(12px, 3vw, 20px);
       }
-      #raceResults h2 { margin:0 0 5px; text-align:center; color:#9ce9ff; font-size:clamp(18px,3.5vw,26px); }
-      #raceResults .result-sub { text-align:center; color:#c4d9e5; margin:0 0 10px; font-size:11px; }
-      #resultList { display:grid; gap:4px; }
+      #raceResults h2 { margin:0 0 3px; text-align:center; color:#9ce9ff; font-size:clamp(16px,3vw,24px); }
+      #raceResults .result-sub { text-align:center; color:#c4d9e5; margin:0 0 8px; font-size:10px; }
+      #resultList { display:grid; gap:2px; }
       #resultList .result-row {
-        display:grid; grid-template-columns:35px 1fr auto; align-items:center;
-        gap:8px; padding:6px 10px; border-radius:8px;
-        background:#ffffff0d; border:1px solid #ffffff12; font-size:12px;
+        display:grid; grid-template-columns:30px 1fr auto; align-items:center;
+        gap:6px; padding:3px 8px; border-radius:6px;
+        background:#ffffff0d; border:1px solid #ffffff12; font-size:11px;
       }
       #resultList .result-row:first-child { background:#d6a52b30; border-color:#ffd86b80; }
       #resultList .place { color:#8de1ff; font-weight:900; }
@@ -591,12 +634,12 @@
         display: flex;
         gap: 12px;
         justify-content: center;
-        margin-top: 14px;
+        margin-top: 10px;
       }
       .result-btn {
-        padding: 10px 18px; border-radius:10px;
+        padding: 8px 16px; border-radius:10px;
         border:1px solid #8de1ff; font-weight:900; cursor:pointer;
-        color:white; font-size: 13px;
+        color:white; font-size: 12px;
       }
       #resultRestart { background: linear-gradient(145deg, #0786c9, #075078); }
       #resultClose { background: #1f3747; }
@@ -639,17 +682,29 @@
   <body>
     <!-- LECTEUR AUDIO POUR LA CHANSON "KIZOBZOBA" DE ZOZO -->
     <audio id="bgMusic" loop preload="auto">
-      <!-- Remplacer la source ci-dessous par un lien direct valide (.mp3) ou un fichier local -->
       <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=afrobeat-instrumental-110793.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- MENU PRINCIPAL & SPLASH ANIMÉ -->
+    <!-- MENU PRINCIPAL & SPLASH ANIMÉ AVEC CHOIX DE CIRCUIT -->
     <div id="mainMenu">
       <div class="splash-canvas-container" id="splashCanvasContainer"></div>
       <div class="menu-container">
-        <div class="menu-badge">KINSHASA URBAN CHAMPIONSHIP</div>
+        <div class="menu-badge">CHAMPIONNAT DE COURSE 3D</div>
         <h1>VELO 3D <span>CHAMPIONSHIP</span></h1>
-        <p>Affrontez 9 coureurs à travers les boulevards et quartiers emblématiques de Kinshasa. Gérez votre endurance, utilisez le turbo et terminez sur le podium !</p>
+        <p>Sélectionnez votre circuit et affrontez 9 coureurs. Gérez votre endurance, utilisez le turbo et terminez sur le podium !</p>
+        
+        <!-- Sélecteur de circuit -->
+        <div class="track-selector">
+          <div class="track-card selected" data-track="kinshasa">
+            <h3>Kinshasa</h3>
+            <p>Urbain & Roulant</p>
+          </div>
+          <div class="track-card" data-track="goma">
+            <h3>Goma</h3>
+            <p>Volcanique & Technique</p>
+          </div>
+        </div>
+
         <button id="startMenuBtn" class="menu-btn">JOUER</button>
       </div>
     </div>
@@ -666,7 +721,7 @@
 
     <div id="hud">
       <div id="top">
-        KINSHASA <span>URBAN RACE</span> · TOUR <b id="lap">1/3</b> ·
+        <span id="trackNameDisplay">KINSHASA</span> <span>URBAN RACE</span> · TOUR <b id="lap">1/3</b> ·
         <b id="clock">00:00</b>
       </div>
 
@@ -732,6 +787,16 @@
 
     <script type="module">
       import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+      let selectedTrackKey = "kinshasa";
+      const trackCards = document.querySelectorAll(".track-card");
+      trackCards.forEach(card => {
+        card.addEventListener("click", () => {
+          trackCards.forEach(c => c.classList.remove("selected"));
+          card.classList.add("selected");
+          selectedTrackKey = card.dataset.track;
+        });
+      });
 
       async function requestLandscape() {
         try {
@@ -855,60 +920,37 @@
       ground.receiveShadow = true;
       scene.add(ground);
 
-      const TRACK_POINTS = [
-        [0, 170],
-        [45, 170],
-        [90, 166],
-        [130, 151],
-        [151, 125],
-        [154, 88],
-        [150, 52],
-        [132, 25],
-        [105, 12],
-        [72, 10],
-        [42, 8],
-        [18, -2],
-        [12, -30],
-        [22, -62],
-        [47, -80],
-        [83, -84],
-        [118, -82],
-        [145, -94],
-        [158, -122],
-        [150, -151],
-        [126, -169],
-        [91, -174],
-        [54, -172],
-        [22, -160],
-        [-7, -143],
-        [-34, -125],
-        [-62, -122],
-        [-91, -128],
-        [-117, -116],
-        [-135, -91],
-        [-139, -57],
-        [-135, -24],
-        [-119, 4],
-        [-91, 23],
-        [-61, 38],
-        [-48, 67],
-        [-54, 99],
-        [-76, 124],
-        [-104, 137],
-        [-96, 158],
-        [-64, 171],
-        [-30, 175],
+      // Tracé Kinshasa (urbain et fluide)
+      const TRACK_POINTS_KINSHASA = [
+        [0, 170], [45, 170], [90, 166], [130, 151], [151, 125],
+        [154, 88], [150, 52], [132, 25], [105, 12], [72, 10],
+        [42, 8], [18, -2], [12, -30], [22, -62], [47, -80],
+        [83, -84], [118, -82], [145, -94], [158, -122], [150, -151],
+        [126, -169], [91, -174], [54, -172], [22, -160], [-7, -143],
+        [-34, -125], [-62, -122], [-91, -128], [-117, -116], [-135, -91],
+        [-139, -57], [-135, -24], [-119, 4], [-91, 23], [-61, 38],
+        [-48, 67], [-54, 99], [-76, 124], [-104, 137], [-96, 158],
+        [-64, 171], [-30, 175],
       ];
 
-      const curve = new THREE.CatmullRomCurve3(
+      // Tracé Goma (circuit volcanique technique entièrement recentré et distant du volcan)
+      const TRACK_POINTS_GOMA = [
+        [0, 120], [55, 110], [100, 70], [110, 10], [90, -40],
+        [110, -90], [70, -130], [10, -140], [-40, -120], [-90, -130],
+        [-120, -90], [-130, -30], [-110, 20], [-130, 80], [-90, 120], [-40, 135]
+      ];
+
+      let TRACK_POINTS = TRACK_POINTS_KINSHASA;
+
+      let curve = new THREE.CatmullRomCurve3(
         TRACK_POINTS.map((p) => new THREE.Vector3(p[0], 0, p[1])),
         true,
         "centripetal",
         0.5,
       );
 
-      const LAP = curve.getLength();
-      const TOTAL = LAP * 3;
+      let LAP = curve.getLength();
+      let TOTAL = LAP * 3;
       const WIDTH = 18;
       const SAMPLES = 2200;
 
@@ -929,32 +971,30 @@
 
       function elevationAt(s) {
         let height = 0;
-
-        height += hillProfile(s, LAP * 0.15, 48, 3.2);
-        height += hillProfile(s, LAP * 0.43, 40, 2.5);
-        height += hillProfile(s, LAP * 0.72, 54, 3.8);
-        height += hillProfile(s, LAP * 0.89, 32, 1.8);
-
-        height += hillProfile(s, LAP * 0.3, 3.2, 0.28);
-        height += hillProfile(s, LAP * 0.58, 3.2, 0.28);
-        height += hillProfile(s, LAP * 0.83, 3.2, 0.28);
-
+        if (selectedTrackKey === "goma") {
+          // Relief volcanique doux et sécurisé sur la piste
+          height += hillProfile(s, LAP * 0.25, 50, 4.0);
+          height += hillProfile(s, LAP * 0.65, 60, 5.5);
+        } else {
+          height += hillProfile(s, LAP * 0.15, 48, 3.2);
+          height += hillProfile(s, LAP * 0.43, 40, 2.5);
+          height += hillProfile(s, LAP * 0.72, 54, 3.8);
+          height += hillProfile(s, LAP * 0.89, 32, 1.8);
+        }
         return height;
       }
 
       function centerAt(s) {
         const p = curve.getPointAt(normS(s) / LAP);
-        p.y += elevationAt(s);
+        p.y = elevationAt(s);
         return p;
       }
 
       function tangentAt(s) {
-        const d = curve.getTangentAt(normS(s) / LAP).normalize();
-
         const ahead = centerAt(s + 1);
         const behind = centerAt(s - 1);
 
-        d.set(
+        const d = new THREE.Vector3(
           ahead.x - behind.x,
           ahead.y - behind.y,
           ahead.z - behind.z,
@@ -1017,6 +1057,16 @@
         r.root.position.y += riderGroundOffset(r);
       }
 
+      let stripMeshes = [];
+      let decorMeshes = [];
+
+      function clearDynamicEnvironment() {
+        decorMeshes.forEach(m => scene.remove(m));
+        stripMeshes.forEach(m => scene.remove(m));
+        decorMeshes = [];
+        stripMeshes = [];
+      }
+
       function makeStrip(offset, width, material, yOffset = 0.02) {
         const verts = [],
           idx = [];
@@ -1039,841 +1089,267 @@
         }
 
         const g = new THREE.BufferGeometry();
-
         g.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3));
-
         g.setIndex(idx);
         g.computeVertexNormals();
 
         const mesh = new THREE.Mesh(g, material);
         mesh.receiveShadow = true;
         scene.add(mesh);
+        stripMeshes.push(mesh);
 
         return mesh;
       }
 
-      makeStrip(0, WIDTH + 13, M.sidewalk, 0.005);
-      makeStrip(0, WIDTH, M.road, 0.035);
-      makeStrip(-WIDTH / 2 - 3.5, 5.5, M.sidewalk, 0.025);
-      makeStrip(WIDTH / 2 + 3.5, 5.5, M.sidewalk, 0.025);
-
-      makeStrip(-WIDTH / 2 - 7, 0.65, M.dark, 0.035);
-      makeStrip(WIDTH / 2 + 7, 0.65, M.dark, 0.035);
-
-      makeStrip(-WIDTH / 2 + 1, 0.18, M.white, 0.07);
-      makeStrip(WIDTH / 2 - 1, 0.18, M.white, 0.07);
-      makeStrip(0, 0.13, M.yellow, 0.065);
-
-      const SPEED_BUMPS = [
-        { s: LAP * 0.3 },
-        { s: LAP * 0.58 },
-        { s: LAP * 0.83 },
-      ];
-
-      const bumpYellow = mat(0xffd32a, 0.65);
-      const bumpBlack = mat(0x202328, 0.75);
-
-      function createSpeedBump(s) {
-        const p = positionAt(s, 0);
-        const d = tangentAt(s);
-
-        const group = new THREE.Group();
-
-        group.position.copy(p);
-        group.position.y += 0.12;
-        group.rotation.y = -Math.atan2(d.z, d.x);
-
-        const body = new THREE.Mesh(
-          new THREE.BoxGeometry(1.25, 0.13, WIDTH - 1),
-          bumpYellow,
-        );
-
-        body.position.y = 0.02;
-        body.castShadow = true;
-        body.receiveShadow = true;
-        group.add(body);
-
-        for (let i = 0; i < 9; i++) {
-          const stripe = new THREE.Mesh(
-            new THREE.BoxGeometry(1.28, 0.045, 1.05),
-            bumpBlack,
-          );
-
-          stripe.position.set(0, 0.105, -WIDTH / 2 + 1.1 + i * 1.9);
-
-          group.add(stripe);
-        }
-
-        scene.add(group);
-      }
-
-      SPEED_BUMPS.forEach((b) => createSpeedBump(b.s));
-
-      for (let s = 0; s < LAP; s += 5) {
-        for (const lane of [-WIDTH / 2 - 1, WIDTH / 2 + 1]) {
-          const p = positionAt(s, lane),
-            d = tangentAt(s);
-
-          const box = new THREE.Mesh(
-            new THREE.BoxGeometry(4, 0.24, 0.7),
-            Math.floor(s / 5) % 2 ? M.white : M.red,
-          );
-
-          box.position.copy(p);
-          box.position.y += 0.13;
-          box.rotation.y = -Math.atan2(d.z, d.x);
-          box.castShadow = true;
-          scene.add(box);
-        }
-      }
-
-      function crosswalk(s) {
-        const p = positionAt(s, 0),
-          d = tangentAt(s);
-        const angle = -Math.atan2(d.z, d.x);
-
-        for (let i = 0; i < 13; i++) {
-          const stripe = new THREE.Mesh(
-            new THREE.BoxGeometry(0.85, 0.035, WIDTH - 1),
-            M.white,
-          );
-
-          const lateral = (i - 6) * 1.35;
-
-          stripe.position.copy(p);
-          stripe.position.y += 0.09;
-          stripe.position.x += -d.z * lateral;
-          stripe.position.z += d.x * lateral;
-          stripe.rotation.y = angle;
-
-          scene.add(stripe);
-        }
-      }
-
-      [0.08, 0.24, 0.43, 0.62, 0.81, 0.94].forEach((f) => crosswalk(LAP * f));
-
-      for (const f of [0.08, 0.24, 0.43, 0.62, 0.81, 0.94]) {
-        const p = positionAt(LAP * f, 0),
-          d = tangentAt(LAP * f);
-
-        const line = new THREE.Mesh(
-          new THREE.BoxGeometry(0.35, 0.035, WIDTH - 1),
-          M.white,
-        );
-
-        line.position.copy(p);
-        line.position.y += 0.1;
-        line.rotation.y = -Math.atan2(d.z, d.x);
-
-        scene.add(line);
-      }
-
-      {
-        const p = positionAt(0, 0);
-        const d = tangentAt(0);
-        const ang = -Math.atan2(d.z, d.x);
-
-        for (let i = 0; i < 18; i++) {
-          for (let j = 0; j < 2; j++) {
-            const tile = new THREE.Mesh(
-              new THREE.BoxGeometry(WIDTH / 18, 0.045, 1.15),
-              (i + j) % 2 ? M.white : M.dark,
-            );
-
-            tile.position.copy(p);
-            tile.position.y += 0.11;
-
-            const lateral = ((i - 8.5) * WIDTH) / 18;
-
-            tile.position.x += -d.z * lateral;
-            tile.position.z += d.x * lateral;
-            tile.position.addScaledVector(d, (j - 0.5) * 1.15);
-            tile.rotation.y = ang;
-
-            scene.add(tile);
-          }
-        }
-      }
-
-      /* =========================================================
-   ARCHITECTURE URBAINE & ACCESSOIRES
-========================================================= */
-
-      const buildingColors = [
-        0xd7c2a0, 0xe5d8c3, 0xc8b9a1, 0xb9c5c7, 0xe1c7a5, 0xc7b6a1, 0xd6d1bd,
-        0xb9b0a0, 0xf0dfc4, 0x9faeb0,
-      ];
-
-      const windowMaterials = [
-        mat(0x243e51, 0.35),
-        mat(0x426275, 0.35),
-        mat(0x253d4c, 0.35),
-        mat(0x6c8791, 0.35),
-      ];
-
-      function addBuilding(x, z, w, d, h, index) {
-        const group = new THREE.Group();
-        group.position.set(x, 0, z);
-
-        const wallMat = mat(buildingColors[index % buildingColors.length]);
-
-        const body = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), wallMat);
-
-        body.position.y = h / 2;
-        body.castShadow = true;
-        body.receiveShadow = true;
-        group.add(body);
-
-        const roof = new THREE.Mesh(
-          new THREE.BoxGeometry(w + 0.35, 0.35, d + 0.35),
-          mat(0x77756e),
-        );
-
-        roof.position.y = h + 0.12;
-        group.add(roof);
-
-        const floors = Math.max(1, Math.floor(h / 3.1));
-        const cols = Math.max(2, Math.floor(w / 2.1));
-
-        for (let floor = 0; floor < floors; floor++) {
-          for (let col = 0; col < cols; col++) {
-            const wx = -w / 2 + ((col + 0.5) * w) / cols;
-            const wy = 2 + floor * 3.05;
-
-            const win = new THREE.Mesh(
-              new THREE.BoxGeometry(
-                Math.min(0.95, (w / cols) * 0.55),
-                1.25,
-                0.055,
-              ),
-              windowMaterials[(index + floor + col) % windowMaterials.length],
-            );
-
-            win.position.set(wx, wy, d / 2 + 0.035);
-            group.add(win);
-
-            const frame = new THREE.Mesh(
-              new THREE.BoxGeometry(
-                Math.min(1.05, (w / cols) * 0.62),
-                1.36,
-                0.07,
-              ),
-              mat(0xe5e0d4),
-            );
-
-            frame.position.set(wx, wy, d / 2 + 0.065);
-            group.add(frame);
-
-            frame.position.z += 0.025;
-            frame.material.transparent = true;
-            frame.material.opacity = 0.35;
-          }
-        }
-
-        const door = new THREE.Mesh(
-          new THREE.BoxGeometry(1.25, 2.3, 0.1),
-          mat(0x49382b),
-        );
-
-        door.position.set(0, 1.15, d / 2 + 0.08);
-        group.add(door);
-
-        if (index % 3 === 0) {
-          const balcony = new THREE.Mesh(
-            new THREE.BoxGeometry(w * 0.7, 0.18, 1.1),
-            mat(0x8d8d83),
-          );
-
-          balcony.position.set(0, 3.1, d / 2 + 0.5);
-          group.add(balcony);
-
-          const rail = new THREE.Mesh(
-            new THREE.BoxGeometry(w * 0.7, 0.65, 0.08),
-            M.metal,
-          );
-
-          rail.position.set(0, 3.48, d / 2 + 1);
-          group.add(rail);
-        }
-
-        scene.add(group);
-        return group;
-      }
-
-      for (let i = 0; i < 120; i++) {
-        const s = (LAP * i) / 120;
-        const side = i % 2 ? 1 : -1;
-        const safeDistance = WIDTH / 2 + 18 + (i % 4) * 5;
-        const p = positionAt(s, side * safeDistance);
-        const d = tangentAt(s);
-        const angle = Math.atan2(-d.z, d.x);
-
-        const width = 10 + (i % 4) * 3;
-        const depth = 10 + (i % 3) * 3;
-        const height = 8 + ((i * 7) % 24);
-
-        const building = addBuilding(p.x, p.z, width, depth, height, i);
-        building.rotation.y = angle;
-      }
-
-      for (let i = 0; i < 70; i++) {
-        const s = (LAP * (i + 0.4)) / 70;
-        const side = i % 2 ? 1 : -1;
-
-        const p = positionAt(s, side * (WIDTH / 2 + 40 + (i % 3) * 7));
-        const d = tangentAt(s);
-
-        const b = addBuilding(
-          p.x,
-          p.z,
-          14 + (i % 3) * 4,
-          13 + (i % 2) * 4,
-          17 + ((i * 11) % 35),
-          i + 4,
-        );
-
-        b.rotation.y = Math.atan2(-d.z, d.x);
-      }
-
-      for (let i = 0; i < 30; i++) {
-        const a = (i / 30) * Math.PI * 2;
-        const radius = 240 + (i % 5) * 13;
-        const x = Math.cos(a) * radius;
-        const z = Math.sin(a) * radius;
-        const h = 35 + ((i * 17) % 65);
-
-        const tower = new THREE.Mesh(
-          new THREE.BoxGeometry(13 + (i % 4) * 4, h, 13 + (i % 3) * 4),
-          mat(buildingColors[i % buildingColors.length]),
-        );
-
-        tower.position.set(x, h / 2, z);
-        tower.castShadow = true;
-        scene.add(tower);
-      }
-
-      function makeSignTexture(label, color) {
-        const c = document.createElement("canvas");
-        c.width = 512;
-        c.height = 128;
-
-        const ctx = c.getContext("2d");
-        ctx.fillStyle = color;
-        ctx.fillRect(0, 0, 512, 128);
-
-        ctx.fillStyle = "#fff";
-        ctx.font = "bold 48px Arial";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(label, 256, 65);
-
-        const tex = new THREE.CanvasTexture(c);
-        tex.colorSpace = THREE.SRGBColorSpace;
-
-        return tex;
-      }
-
-      const districtNames = [
-        "GOMBE", "MATONGE", "LIMETE", "KINTAMBO",
-        "NGALIEMA", "KALAMU", "BANDAL", "MASINA", "BARUMBU", "KINSHASA"
-      ];
-
-      function createDistrictSign(s, side, label) {
-        const p = positionAt(s, side * (WIDTH / 2 + 7.5));
-        const d = tangentAt(s);
-        const g = new THREE.Group();
-        g.position.set(p.x, 0, p.z);
-        g.rotation.y = -Math.atan2(d.z, d.x);
-
-        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 4, 7), M.metal);
-        post.position.y = 2;
-        g.add(post);
-
-        const board = new THREE.Mesh(
-          new THREE.BoxGeometry(4.8, 1.2, 0.18),
-          new THREE.MeshStandardMaterial({ map: makeSignTexture("QUARTIER " + label, "#155e9c") })
-        );
-        board.position.set(1.2, 3.4, 0);
-        g.add(board);
-        scene.add(g);
-      }
-
-      districtNames.forEach((name, i) => {
-        createDistrictSign((LAP * i) / districtNames.length, i % 2 === 0 ? 1 : -1, name);
-      });
-
-      function shopSign(s, side, label, color) {
-        const p = positionAt(s, side * (WIDTH / 2 + 12));
-        const d = tangentAt(s);
-
-        const g = new THREE.Group();
-        g.position.set(p.x, 3, p.z);
-        g.rotation.y = -Math.atan2(d.z, d.x);
-
-        const panel = new THREE.Mesh(
-          new THREE.BoxGeometry(7, 1.5, 0.2),
-          new THREE.MeshStandardMaterial({
-            map: makeSignTexture(label, color),
-          }),
-        );
-
-        g.add(panel);
-        scene.add(g);
-      }
-
-      const signs = [
-        ["MARCHÉ", "#a63d24"],
-        ["ALIMENTATION", "#287c49"],
-        ["KIN MARKET", "#155e9c"],
-        ["MATONGE", "#9b3b79"],
-        ["GOMBE", "#1d6577"],
-        ["LIMETE", "#a46b1e"],
-        ["BOUTIQUE", "#33475b"],
-        ["BAR & RESTO", "#8e3b25"],
-        ["TÉLÉCOM", "#147a75"],
-        ["KINSHASA", "#b22c32"],
-      ];
-
-      for (let i = 0; i < 40; i++) {
-        const a = signs[i % signs.length];
-        shopSign((LAP * i) / 40, i % 2 ? 1 : -1, a[0], a[1]);
-      }
-
-      function kiosk(s, side, index) {
-        const p = positionAt(s, side * (WIDTH / 2 + 8));
-        const d = tangentAt(s);
-
-        const g = new THREE.Group();
-        g.position.set(p.x, 0, p.z);
-        g.rotation.y = -Math.atan2(d.z, d.x);
-
-        const colors = [0xe6b74a, 0xd95a3a, 0x4c9365, 0x4682a5];
-
-        const body = new THREE.Mesh(
-          new THREE.BoxGeometry(3.5, 2.6, 2.8),
-          mat(colors[index % 4]),
-        );
-
-        body.position.y = 1.3;
-        body.castShadow = true;
-        g.add(body);
-
-        const roof = new THREE.Mesh(
-          new THREE.BoxGeometry(4, 0.25, 3.2),
-          mat(0x33383c),
-        );
-
-        roof.position.y = 2.75;
-        g.add(roof);
-
-        const opening = new THREE.Mesh(
-          new THREE.BoxGeometry(2.2, 1.2, 0.08),
-          mat(0x30251d),
-        );
-
-        opening.position.set(0, 1.55, 1.43);
-        g.add(opening);
-
-        const counter = new THREE.Mesh(
-          new THREE.BoxGeometry(3.2, 0.25, 0.6),
-          mat(0x795536),
-        );
-
-        counter.position.set(0, 1.1, 1.7);
-        g.add(counter);
-
-        scene.add(g);
-      }
-
-      for (let i = 0; i < 34; i++) {
-        kiosk((LAP * (i + 0.3)) / 34, i % 2 ? 1 : -1, i);
-      }
-
-      for (let i = 0; i < 16; i++) {
-        const s = (LAP * (i + 0.6)) / 16;
-        const side = i % 2 ? 1 : -1;
-        const p = positionAt(s, side * (WIDTH / 2 + 19));
-
-        const g = new THREE.Group();
-        g.position.set(p.x, 0, p.z);
-
-        const canopy = new THREE.Mesh(
-          new THREE.BoxGeometry(5, 0.18, 4),
-          mat(i % 2 ? 0xe4bd45 : 0xb64a36),
-        );
-
-        canopy.position.y = 3;
-        g.add(canopy);
-
-        for (const x of [-2.2, 2.2]) {
-          for (const z of [-1.7, 1.7]) {
-            const post = new THREE.Mesh(
-              new THREE.CylinderGeometry(0.07, 0.07, 3, 6),
-              M.metal,
-            );
-
-            post.position.set(x, 1.5, z);
-            g.add(post);
-          }
-        }
-
-        scene.add(g);
-      }
-
-      function streetLamp(s, side) {
-        const p = positionAt(s, side * (WIDTH / 2 + 6));
-        const d = tangentAt(s);
-
-        const g = new THREE.Group();
-        g.position.set(p.x, 0, p.z);
-        g.rotation.y = -Math.atan2(d.z, d.x);
-
-        const pole = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.09, 0.14, 7, 8),
-          M.metal,
-        );
-
-        pole.position.y = 3.5;
-        g.add(pole);
-
-        const arm = new THREE.Mesh(
-          new THREE.BoxGeometry(1.7, 0.1, 0.12),
-          M.metal,
-        );
-
-        arm.position.set(0.7, 6.6, 0);
-        g.add(arm);
-
-        const lamp = new THREE.Mesh(
-          new THREE.BoxGeometry(0.65, 0.18, 0.45),
-          mat(0xffe5a0),
-        );
-
-        lamp.position.set(1.35, 6.5, 0);
-        g.add(lamp);
-
-        scene.add(g);
-      }
-
-      for (let i = 0; i < 60; i++) {
-        streetLamp((LAP * i) / 60, i % 2 ? 1 : -1);
-      }
-
-      function trafficLight(s, side) {
-        const p = positionAt(s, side * (WIDTH / 2 + 5));
-        const d = tangentAt(s);
-
-        const g = new THREE.Group();
-        g.position.set(p.x, 0, p.z);
-        g.rotation.y = -Math.atan2(d.z, d.x);
-
-        const pole = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.09, 0.12, 5, 8),
-          M.metal,
-        );
-
-        pole.position.y = 2.5;
-        g.add(pole);
-
-        const box = new THREE.Mesh(
-          new THREE.BoxGeometry(0.55, 1.55, 0.5),
-          M.dark,
-        );
-
-        box.position.set(0.25, 4.6, 0);
-        g.add(box);
-
-        [0xff2525, 0xffd12b, 0x28c45c].forEach((c, i) => {
-          const light = new THREE.Mesh(
-            new THREE.SphereGeometry(0.16, 10, 8),
-            new THREE.MeshBasicMaterial({ color: c }),
-          );
-
-          light.position.set(0.25, 5.1 - i * 0.48, 0.27);
-          g.add(light);
-        });
-
-        scene.add(g);
-      }
-
-      [0.08, 0.24, 0.43, 0.62, 0.81, 0.94].forEach((f) => {
-        trafficLight(LAP * f, 1);
-        trafficLight(LAP * f, -1);
-      });
-
-      const treeMaterials = [
-        mat(0x236b37),
-        mat(0x478a3e),
-        mat(0x326e34),
-        mat(0x5b9144),
-      ];
-
-      function tree(x, z, scale = 1, type = 0) {
-        const g = new THREE.Group();
-        g.position.set(x, 0, z);
-        g.scale.setScalar(scale);
-
-        const trunk = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.2, 0.34, 3.2, 7),
-          M.trunk,
-        );
-
-        trunk.position.y = 1.6;
-        g.add(trunk);
-
-        if (type % 2 === 0) {
-          const crown = new THREE.Mesh(
-            new THREE.SphereGeometry(2, 9, 7),
-            treeMaterials[type % 4],
-          );
-
-          crown.position.y = 4.2;
-          crown.scale.set(1, 1.2, 1);
-          g.add(crown);
+      let SPEED_BUMPS = [];
+      let obstacles = [];
+
+      function buildEnvironmentForCurrentTrack() {
+        clearDynamicEnvironment();
+
+        if (selectedTrackKey === "goma") {
+          scene.background = new THREE.Color(0x2a2220);
+          scene.fog = new THREE.Fog(0x2a2220, 180, 550);
+          document.getElementById("trackNameDisplay").textContent = "GOMA";
+          M.road.color.setHex(0x1a1a1d);
+          M.grass.color.setHex(0x3b3531);
         } else {
-          for (let i = 0; i < 5; i++) {
-            const leaf = new THREE.Mesh(
-              new THREE.ConeGeometry(0.38, 3.5, 7),
-              treeMaterials[type % 4],
-            );
+          scene.background = new THREE.Color(0x9bc5df);
+          scene.fog = new THREE.Fog(0x9bc5df, 230, 650);
+          document.getElementById("trackNameDisplay").textContent = "KINSHASA";
+          M.road.color.setHex(0x30343a);
+          M.grass.color.setHex(0x777c66);
+        }
 
-            leaf.position.y = 4.5;
-            leaf.rotation.z = Math.PI / 2.6;
-            leaf.rotation.y = (i * Math.PI * 2) / 5;
-            g.add(leaf);
+        makeStrip(0, WIDTH + 13, M.sidewalk, 0.005);
+        makeStrip(0, WIDTH, M.road, 0.035);
+        makeStrip(-WIDTH / 2 - 3.5, 5.5, M.sidewalk, 0.025);
+        makeStrip(WIDTH / 2 + 3.5, 5.5, M.sidewalk, 0.025);
+
+        makeStrip(-WIDTH / 2 - 7, 0.65, M.dark, 0.035);
+        makeStrip(WIDTH / 2 + 7, 0.65, M.dark, 0.035);
+
+        makeStrip(-WIDTH / 2 + 1, 0.18, M.white, 0.07);
+        makeStrip(WIDTH / 2 - 1, 0.18, M.white, 0.07);
+        makeStrip(0, 0.13, M.yellow, 0.065);
+
+        SPEED_BUMPS = [
+          { s: LAP * 0.3 },
+          { s: LAP * 0.58 },
+          { s: LAP * 0.83 },
+        ];
+
+        const bumpYellow = mat(0xffd32a, 0.65);
+        const bumpBlack = mat(0x202328, 0.75);
+
+        function createSpeedBump(s) {
+          const p = positionAt(s, 0);
+          const d = tangentAt(s);
+
+          const group = new THREE.Group();
+          group.position.copy(p);
+          group.position.y += 0.12;
+          group.rotation.y = -Math.atan2(d.z, d.x);
+
+          const body = new THREE.Mesh(
+            new THREE.BoxGeometry(1.25, 0.13, WIDTH - 1),
+            bumpYellow,
+          );
+          body.position.y = 0.02;
+          body.castShadow = true;
+          body.receiveShadow = true;
+          group.add(body);
+
+          for (let i = 0; i < 9; i++) {
+            const stripe = new THREE.Mesh(
+              new THREE.BoxGeometry(1.28, 0.045, 1.05),
+              bumpBlack,
+            );
+            stripe.position.set(0, 0.105, -WIDTH / 2 + 1.1 + i * 1.9);
+            group.add(stripe);
+          }
+
+          scene.add(group);
+          decorMeshes.push(group);
+        }
+
+        SPEED_BUMPS.forEach((b) => createSpeedBump(b.s));
+
+        for (let s = 0; s < LAP; s += 5) {
+          for (const lane of [-WIDTH / 2 - 1, WIDTH / 2 + 1]) {
+            const p = positionAt(s, lane),
+              d = tangentAt(s);
+
+            const box = new THREE.Mesh(
+              new THREE.BoxGeometry(4, 0.24, 0.7),
+              Math.floor(s / 5) % 2 ? M.white : M.red,
+            );
+            box.position.copy(p);
+            box.position.y += 0.13;
+            box.rotation.y = -Math.atan2(d.z, d.x);
+            box.castShadow = true;
+            scene.add(box);
+            decorMeshes.push(box);
           }
         }
 
-        scene.add(g);
-      }
+        if (selectedTrackKey === "goma") {
+          // VOLCAN NYIRAGONGO REPOSITIONNÉ LOIN DU TRACÉ (arrière-plan absolu, sans contact avec le macadam)
+          const volcanoGroup = new THREE.Group();
+          volcanoGroup.position.set(0, 0, -550);
+          const volcanoBase = new THREE.Mesh(
+            new THREE.ConeGeometry(170, 130, 12),
+            mat(0x2d2825, 0.95, 0.1)
+          );
+          volcanoBase.position.y = 65;
+          volcanoBase.castShadow = true;
+          volcanoGroup.add(volcanoBase);
 
-      for (let i = 0; i < 45; i++) {
-        const s = (LAP * i) / 45;
-        const side = i % 2 ? 1 : -1;
-        const p = positionAt(s, side * (WIDTH / 2 + 26 + (i % 3) * 7));
+          const craterGlow = new THREE.Mesh(
+            new THREE.CylinderGeometry(22, 28, 8, 12),
+            new THREE.MeshBasicMaterial({ color: 0xff3b19 })
+          );
+          craterGlow.position.y = 128;
+          volcanoGroup.add(craterGlow);
+          scene.add(volcanoGroup);
+          decorMeshes.push(volcanoGroup);
 
-        tree(p.x, p.z, 0.8 + (i % 3) * 0.12, i);
-      }
+          // Roches de lave en bordure extérieure de la piste
+          for (let i = 0; i < 70; i++) {
+            const s = (LAP * i) / 70;
+            const side = i % 2 ? 1 : -1;
+            const p = positionAt(s, side * (WIDTH / 2 + 16));
 
-      const carColors = [
-        0xd72e32, 0xe4e4e4, 0x2366a8, 0x20252a, 0xd4a62b, 0x34885b,
-      ];
+            const rockGroup = new THREE.Group();
+            rockGroup.position.set(p.x, p.y, p.z);
 
-      function parkedCar(s, side, index) {
-        const p = positionAt(s, side * (WIDTH / 2 + 5));
-        const d = tangentAt(s);
-
-        const g = new THREE.Group();
-        g.position.set(p.x, 0.35, p.z);
-        g.rotation.y = -Math.atan2(d.z, d.x);
-
-        const color = mat(carColors[index % carColors.length], 0.5, 0.15);
-
-        const body = new THREE.Mesh(
-          new THREE.BoxGeometry(4.1, 1.15, 1.8),
-          color,
-        );
-
-        body.position.y = 0.65;
-        body.castShadow = true;
-        g.add(body);
-
-        const cabin = new THREE.Mesh(
-          new THREE.BoxGeometry(2.2, 0.85, 1.55),
-          mat(0x526a78, 0.3, 0.15),
-        );
-
-        cabin.position.set(-0.15, 1.55, 0);
-        g.add(cabin);
-
-        for (const x of [-1.3, 1.3]) {
-          for (const z of [-0.95, 0.95]) {
-            const wheel = new THREE.Mesh(
-              new THREE.CylinderGeometry(0.38, 0.38, 0.22, 12),
-              M.dark,
+            const rockMesh = new THREE.Mesh(
+              new THREE.DodecahedronGeometry(3.5 + (i % 3) * 1.5, 1),
+              mat(0x221f1e, 0.88, 0.2)
             );
+            rockMesh.position.y = 1.5;
+            rockMesh.rotation.set(i, i * 0.5, i * 0.2);
+            rockMesh.castShadow = true;
+            rockGroup.add(rockMesh);
 
-            wheel.rotation.x = Math.PI / 2;
-            wheel.position.set(x, 0.38, z);
-            g.add(wheel);
+            scene.add(rockGroup);
+            decorMeshes.push(rockGroup);
+          }
+        } else {
+          const buildingColors = [
+            0xd7c2a0, 0xe5d8c3, 0xc8b9a1, 0xb9c5c7, 0xe1c7a5, 
+            0xc7b6a1, 0xd6d1bd, 0xb9b0a0, 0xf0dfc4, 0x9faeb0,
+            0x425265, 0x334155, 0x64748b, 0x475569
+          ];
+
+          for (let i = 0; i < 80; i++) {
+            const s = (LAP * i) / 80;
+            const side = i % 2 ? 1 : -1;
+            const p = positionAt(s, side * (WIDTH / 2 + 18));
+            const d = tangentAt(s);
+
+            const bGroup = new THREE.Group();
+            bGroup.position.set(p.x, p.y, p.z);
+            bGroup.rotation.y = Math.atan2(-d.z, d.x);
+
+            const width = 12 + (i % 4) * 3;
+            const depth = 12 + ((i * 3) % 4) * 3;
+            const height = 18 + ((i * 7) % 28);
+
+            const body = new THREE.Mesh(
+              new THREE.BoxGeometry(width, height, depth),
+              mat(buildingColors[i % buildingColors.length], 0.7, 0.1)
+            );
+            body.position.y = height / 2;
+            body.castShadow = true;
+            body.receiveShadow = true;
+            bGroup.add(body);
+
+            const windowMat = mat(0x112233, 0.2, 0.9);
+            const floors = Math.floor(height / 3.5);
+            for (let f = 1; f < floors; f++) {
+              const winRow = new THREE.Mesh(
+                new THREE.BoxGeometry(width * 0.85, 0.8, depth + 0.1),
+                windowMat
+              );
+              winRow.position.y = f * 3.5;
+              bGroup.add(winRow);
+            }
+
+            const roofTank = new THREE.Mesh(
+              new THREE.CylinderGeometry(1.5, 1.5, 2.5, 10),
+              mat(0x8899a6, 0.4, 0.6)
+            );
+            roofTank.position.set(0, height + 1.25, 0);
+            roofTank.castShadow = true;
+            bGroup.add(roofTank);
+
+            scene.add(bGroup);
+            decorMeshes.push(bGroup);
+
+            if (i % 2 === 0) {
+              const palmGroup = new THREE.Group();
+              const palmSide = -side;
+              const pp = positionAt(s + 3, palmSide * (WIDTH / 2 + 6));
+              palmGroup.position.set(pp.x, pp.y, pp.z);
+
+              const trunk = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.4, 0.6, 7, 7),
+                M.trunk
+              );
+              trunk.position.y = 3.5;
+              trunk.castShadow = true;
+              palmGroup.add(trunk);
+
+              for (let pIdx = 0; pIdx < 5; pIdx++) {
+                const leaf = new THREE.Mesh(
+                  new THREE.BoxGeometry(3.5, 0.1, 0.8),
+                  M.leaf
+                );
+                const angle = (pIdx / 5) * Math.PI * 2;
+                leaf.position.set(0, 7, 0);
+                leaf.rotation.y = angle;
+                leaf.rotation.z = 0.4;
+                leaf.castShadow = true;
+                palmGroup.add(leaf);
+              }
+
+              scene.add(palmGroup);
+              decorMeshes.push(palmGroup);
+            }
           }
         }
 
-        scene.add(g);
-      }
+        obstacles = [];
+        for (let i = 0; i < 16; i++) {
+          const s = (LAP * (i + 0.45)) / 16;
+          const lane = (i % 2 ? 1 : -1) * (WIDTH / 2 - 1.4);
+          const p = positionAt(s, lane);
+          const d = tangentAt(s);
 
-      for (let i = 0; i < 20; i++) {
-        parkedCar((LAP * (i + 0.2)) / 20, i % 2 ? 1 : -1, i);
-      }
+          const obj = new THREE.Group();
+          obj.position.copy(p);
+          obj.rotation.y = -Math.atan2(d.z, d.x);
 
-      const supporters = [];
-      const hydrationStations = [];
-
-      const fanShirts = [
-        0xffd22e, 0x16a085, 0xe74c3c, 0x2980b9,
-        0xffffff, 0xf39c12, 0x8e44ad, 0x27ae60
-      ];
-
-      function createSupporter(s, side, index) {
-        const p = positionAt(s, side * (WIDTH / 2 + 4.5));
-        const tangent = tangentAt(s);
-        const group = new THREE.Group();
-        group.position.set(p.x, p.y, p.z);
-        group.rotation.y = -Math.atan2(tangent.z, tangent.x);
-
-        const shirtMat = mat(fanShirts[index % fanShirts.length]);
-        const skinMat = mat([0x8d5a3b, 0x6e432e, 0xb87952][index % 3]);
-        const pantMat = mat(0x1a2530);
-        const shoeMat = mat(0x111111);
-        const hairMat = mat(0x101010);
-
-        const head = new THREE.Mesh(new THREE.SphereGeometry(0.18, 12, 12), skinMat);
-        head.position.y = 1.48;
-        head.castShadow = true;
-        group.add(head);
-
-        const hair = new THREE.Mesh(new THREE.SphereGeometry(0.14, 10, 8), hairMat);
-        hair.position.set(0, 1.58, -0.02);
-        group.add(hair);
-
-        const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.52, 10), shirtMat);
-        torso.position.y = 1.02;
-        torso.castShadow = true;
-        group.add(torso);
-
-        for (const xOffset of [-0.09, 0.09]) {
-          const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.05, 0.5, 8), pantMat);
-          leg.position.set(xOffset, 0.52, 0);
-          leg.castShadow = true;
-          group.add(leg);
-
-          const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.07, 0.16), shoeMat);
-          shoe.position.set(xOffset, 0.25, 0.04);
-          shoe.castShadow = true;
-          group.add(shoe);
-        }
-
-        const armPivots = [];
-        for (const zOffset of [-0.23, 0.23]) {
-          const pivot = new THREE.Group();
-          pivot.position.set(0, 1.22, zOffset);
-
-          const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.04, 0.45, 8), shirtMat);
-          arm.position.y = -0.2;
-          arm.castShadow = true;
-          pivot.add(arm);
-
-          const hand = new THREE.Mesh(new THREE.SphereGeometry(0.055, 8, 8), skinMat);
-          hand.position.y = -0.42;
-          pivot.add(hand);
-
-          group.add(pivot);
-          armPivots.push(pivot);
-        }
-
-        if (index % 3 === 0) {
-          const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.4, 6), mat(0xdddddd));
-          pole.position.set(0.05, 1.85, 0.35);
-          group.add(pole);
-
-          const flag = new THREE.Mesh(
-            new THREE.BoxGeometry(0.65, 0.38, 0.03),
-            mat(index % 2 ? 0xffd22e : 0x16a085)
+          const cone = new THREE.Mesh(
+            new THREE.ConeGeometry(0.48, 1.15, 7),
+            mat(0xff762b),
           );
-          flag.position.set(0.35, 2.15, 0.35);
-          group.add(flag);
-        }
+          cone.position.y = 0.58;
+          obj.add(cone);
 
-        scene.add(group);
-        supporters.push({
-          group, armPivots, phase: index * 0.73,
-          cheering: index % 4 !== 1
-        });
-      }
-
-      for (let i = 0; i < 75; i++) {
-        const sFan = (LAP * (i + 0.25)) / 75;
-        const side = i % 2 === 0 ? -1 : 1;
-        createSupporter(sFan, side, i);
-      }
-
-      function createHydrationStation(sStation, side, index) {
-        const lane = side * (WIDTH / 2 + 2.7);
-        const p = positionAt(sStation, lane);
-        const tangent = tangentAt(sStation);
-        const group = new THREE.Group();
-        group.position.copy(p);
-        group.rotation.y = -Math.atan2(tangent.z, tangent.x);
-
-        const tableMat = mat(0x1676b8);
-        const white = mat(0xf3f6f8);
-        const bottleMat = mat(0x21c6e8, 0.25, 0.15);
-        const table = new THREE.Mesh(
-          new THREE.BoxGeometry(2.7, 0.82, 1.0), tableMat
-        );
-        table.position.set(0, 0.62, 0);
-        table.castShadow = true;
-        group.add(table);
-
-        for (const x of [-1.05, 1.05]) {
-          const leg = new THREE.Mesh(
-            new THREE.BoxGeometry(0.12, 0.62, 0.12), white
+          const base = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.55, 0.55, 0.18, 8),
+            M.dark,
           );
-          leg.position.set(x, 0.31, 0);
-          group.add(leg);
+          base.position.y = 0.09;
+          obj.add(base);
+
+          scene.add(obj);
+          decorMeshes.push(obj);
+          obstacles.push({ s, lane, mesh: obj });
         }
-
-        for (let b = 0; b < 5; b++) {
-          const bottle = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.095, 0.11, 0.34, 8), bottleMat
-          );
-          bottle.position.set(-0.9 + b * 0.45, 1.2, 0);
-          group.add(bottle);
-          const cap = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.045, 0.045, 0.07, 7), mat(0xffdf45)
-          );
-          cap.position.set(-0.9 + b * 0.45, 1.4, 0);
-          group.add(cap);
-        }
-
-        const sign = new THREE.Mesh(
-          new THREE.BoxGeometry(2.5, 0.55, 0.12), mat(0x0b493f)
-        );
-        sign.position.set(0, 2.05, 0);
-        group.add(sign);
-
-        const canvas = document.createElement("canvas");
-        canvas.width = 512;
-        canvas.height = 128;
-        const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#075b49";
-        ctx.fillRect(0, 0, 512, 128);
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 54px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText("EAU  •  RAVITAILLEMENT", 256, 82);
-        const signTexture = new THREE.CanvasTexture(canvas);
-        const signText = new THREE.Mesh(
-          new THREE.PlaneGeometry(2.35, 0.48),
-          new THREE.MeshBasicMaterial({ map: signTexture })
-        );
-        signText.position.set(0, 2.05, 0.071);
-        group.add(signText);
-
-        scene.add(group);
-        hydrationStations.push({
-          s: sStation, lane, mesh: group,
-          usedBy: new Set(), index
-        });
       }
-
-      for (let i = 0; i < 6; i++) {
-        createHydrationStation((LAP * (i + 0.65)) / 6, i % 2 ? 1 : -1, i);
-      }
-
-      /* =========================================================
-   CYCLISTES ET VÉLOS 3D
-========================================================= */
 
       const bikeMats = [
         0x09a7ff, 0xf54252, 0xffc928, 0x9b59d0, 0x31c48d, 0xff8736, 0xf2f2f2,
@@ -2273,10 +1749,6 @@
         return { root, bike, wheels, legs, arms, torso, color, number, isPlayer };
       }
 
-      /* =========================================================
-   CRÉATION DES COUREURS
-========================================================= */
-
       const playerBike = makeRider(bikeMats[0], 38, true);
       scene.add(playerBike.root);
 
@@ -2337,11 +1809,8 @@
         });
       }
 
-      /* =========================================================
-   SCÈNE & GESTION DU PODIUM (REMISE DE PRIX)
-========================================================= */
       const podiumGroup = new THREE.Group();
-      podiumGroup.position.set(0, 0, 350); // Situé hors piste
+      podiumGroup.position.set(0, 0, 350);
       scene.add(podiumGroup);
 
       const matGold = mat(0xffd700, 0.2, 0.8);
@@ -2391,7 +1860,27 @@
       backdrop.position.set(0, 3, -2);
       podiumGroup.add(backdrop);
 
-      const bannerTex = makeSignTexture("KINSHASA PODIUM CHAMPIONSHIP", "#00d2ff");
+      function makeSignTexture(label, color) {
+        const c = document.createElement("canvas");
+        c.width = 512;
+        c.height = 128;
+
+        const ctx = c.getContext("2d");
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, 512, 128);
+
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 48px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(label, 256, 65);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        return tex;
+      }
+
+      const bannerTex = makeSignTexture("CHAMPIONSHIP PODIUM", "#00d2ff");
       const banner = new THREE.Mesh(
         new THREE.PlaneGeometry(12, 1.5),
         new THREE.MeshBasicMaterial({ map: bannerTex })
@@ -2467,42 +1956,6 @@
         }
         confettiGeo.attributes.position.needsUpdate = true;
       }
-
-      const obstacles = [];
-
-      for (let i = 0; i < 18; i++) {
-        const s = (LAP * (i + 0.45)) / 18;
-        const lane = (i % 2 ? 1 : -1) * (WIDTH / 2 - 1.4);
-        const p = positionAt(s, lane);
-        const d = tangentAt(s);
-
-        const obj = new THREE.Group();
-        obj.position.copy(p);
-        obj.rotation.y = -Math.atan2(d.z, d.x);
-
-        const cone = new THREE.Mesh(
-          new THREE.ConeGeometry(0.48, 1.15, 7),
-          mat(0xff762b),
-        );
-
-        cone.position.y = 0.58;
-        obj.add(cone);
-
-        const base = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.55, 0.55, 0.18, 8),
-          M.dark,
-        );
-
-        base.position.y = 0.09;
-        obj.add(base);
-
-        scene.add(obj);
-        obstacles.push({ s, lane, mesh: obj });
-      }
-
-      /* =========================================================
-   COMMANDES PC ET MOBILE
-========================================================= */
 
       const keys = {
         accelerate: false,
@@ -2665,10 +2118,6 @@
 
       addEventListener("blur", clearInputs);
 
-      /* =========================================================
-   ÉTAT DE LA COURSE
-========================================================= */
-
       let gameStarted = false;
       let raceStarted = false;
       let paused = false;
@@ -2680,9 +2129,8 @@
       let turboActive = false;
       let raceCompleted = false;
 
-      // ========================================================
-      // SPLASH SCREEN 3D (Animation du cycliste d'introduction)
-      // ========================================================
+      buildEnvironmentForCurrentTrack();
+
       const splashScene = new THREE.Scene();
       const splashCamera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 100);
       splashCamera.position.set(0, 1.5, 4.5);
@@ -2723,22 +2171,37 @@
       }
       requestAnimationFrame(animateSplash);
 
-      // Gestion du bouton JOUER du menu (Lancement de la musique "Kizobzoba" de Zozo)
       document.getElementById("startMenuBtn").addEventListener("click", () => {
-        gameStarted = true;
-        document.getElementById("mainMenu").classList.add("hidden");
-        
-        // Lancement de la musique audio
-        const bgMusic = document.getElementById("bgMusic");
-        if (bgMusic) {
-          bgMusic.volume = 0.6;
-          bgMusic.play().catch(e => console.log("Lecture audio bloquée ou fichier introuvable :", e));
-        }
+        if (!gameStarted) {
+          gameStarted = true;
+          document.getElementById("mainMenu").classList.add("hidden");
+          
+          TRACK_POINTS = selectedTrackKey === "goma" ? TRACK_POINTS_GOMA : TRACK_POINTS_KINSHASA;
+          curve = new THREE.CatmullRomCurve3(
+            TRACK_POINTS.map((p) => new THREE.Vector3(p[0], 0, p[1])),
+            true,
+            "centripetal",
+            0.5,
+          );
+          LAP = curve.getLength();
+          TOTAL = LAP * 3;
+          buildEnvironmentForCurrentTrack();
+          restartRace();
 
-        setTimeout(() => {
-          splashRenderer.dispose();
-          document.getElementById("splashCanvasContainer").innerHTML = "";
-        }, 700);
+          const bgMusic = document.getElementById("bgMusic");
+          if (bgMusic) {
+            bgMusic.volume = 0.6;
+            bgMusic.play().catch(e => console.log("Lecture audio bloquée ou fichier introuvable :", e));
+          }
+
+          setTimeout(() => {
+            splashRenderer.dispose();
+            document.getElementById("splashCanvasContainer").innerHTML = "";
+          }, 700);
+        } else {
+          document.getElementById("mainMenu").classList.add("hidden");
+          restartRace();
+        }
       });
 
       function showMessage(t) {
@@ -3301,20 +2764,6 @@
             }
           }
         }
-
-        for (const station of hydrationStations) {
-          for (const r of all) {
-            if (r.finished || r.fallen > 0 || station.usedBy.has(r)) continue;
-            const along = circularDistance(r.s, station.s);
-            const across = Math.abs(r.lane - station.lane);
-            if (along < 2.3 && across < 4.3) {
-              station.usedBy.add(r);
-              r.stamina = Math.min(100, (r.stamina || 0) + 35);
-              r.speed = Math.max(0, r.speed - 0.8);
-              if (r === player) showMessage("RAVITAILLEMENT : +35 TURBO");
-            }
-          }
-        }
       }
 
       function standings() {
@@ -3384,8 +2833,6 @@
         podiumRiders.forEach(r => podiumGroup.remove(r.root));
         podiumRiders = [];
 
-        hydrationStations.forEach(st => st.usedBy.clear());
-
         const bgMusic = document.getElementById("bgMusic");
         if (bgMusic) {
           bgMusic.currentTime = 0;
@@ -3444,6 +2891,7 @@
 
       document.getElementById("resultClose").addEventListener("click", () => {
         document.getElementById("raceResults").classList.remove("show");
+        document.getElementById("mainMenu").classList.remove("hidden");
       });
 
       function drawMap() {
@@ -3640,24 +3088,6 @@
         }
       }
 
-      function updateEnvironment(time) {
-        for (const fan of supporters) {
-          const wave = Math.sin(time * 4.2 + fan.phase);
-          fan.armPivots.forEach((arm, i) => {
-            const direction = i === 0 ? 1 : -1;
-            const target = fan.cheering
-              ? -0.9 + wave * 0.58 * direction
-              : 0.12 + wave * 0.12;
-            arm.rotation.z = THREE.MathUtils.damp(
-              arm.rotation.z, target, 7, 1 / 60
-            );
-          });
-          fan.group.position.y = Math.max(
-            0, Math.sin(time * 3 + fan.phase) * 0.035
-          );
-        }
-      }
-
       function animate(now) {
         requestAnimationFrame(animate);
 
@@ -3669,8 +3099,6 @@
         if (!gameStarted) return;
 
         if (!paused) {
-          updateEnvironment(time);
-
           if (!raceStarted) {
             if (!player.finished && !raceCompleted) {
               countdown -= dt;
